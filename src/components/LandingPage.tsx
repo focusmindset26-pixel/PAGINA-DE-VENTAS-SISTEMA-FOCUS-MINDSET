@@ -3,9 +3,108 @@ import { motion, AnimatePresence } from "motion/react";
 import { 
   Shield, Check, ArrowRight, Clock, Star, Flame, ChevronDown, CheckCircle, 
   BookOpen, HelpCircle, Lock, Award, Eye, UserCheck, Key, Sparkles, Zap,
-  X, AlertTriangle, RefreshCw, Skull
+  X, AlertTriangle, RefreshCw, Skull, MapPin, MessageSquare, Play, Pause
 } from "lucide-react";
 import { TESTIMONIALS, FAQS } from "../data";
+
+const STAGES_DATA = [
+  {
+    num: "01",
+    label: "MOTIVACIÓN",
+    title: "🔥 MOTIVACIÓN ALTA",
+    quote: "«Esta vez sí voy a cambiar. Voy por todo.»",
+    desc: "Sientes un subidón irreal de optimismo. Planificas tu vida ideal a las 2 AM empapándote de videos motivacionales de YouTube o Instagram.",
+    dopamine: 100,
+    energy: 90,
+    focus: 60,
+    color: "text-orange-500",
+    glow: "hover:border-orange-500/30",
+    bgClass: "bg-orange-500/10 border-orange-500/20",
+    colorHex: "#f97316",
+    actionTip: "La motivación de corto plazo es un pico transitorio de dopamina. Jamás servirá como base de tu vida.",
+    iconName: "Flame"
+  },
+  {
+    num: "02",
+    label: "ACCIÓN INTENSA",
+    title: "⚡ INTENTO AGRESIVO",
+    quote: "«Día 1 superado. Soy imparable.»",
+    desc: "Empiezas con todo. Reduces horas de sueño, te exiges el triple y buscas ver cambios inmediatos para alimentar tu entusiasmo.",
+    dopamine: 85,
+    energy: 100,
+    focus: 85,
+    color: "text-yellow-400",
+    glow: "hover:border-yellow-400/30",
+    bgClass: "bg-yellow-400/10 border-yellow-400/20",
+    colorHex: "#eab308",
+    actionTip: "El sobreesfuerzo drástico sin un hábitat diseñado drena rápidamente tus reservas de glucosa prefrontal.",
+    iconName: "Zap"
+  },
+  {
+    num: "03",
+    label: "REALIDAD",
+    title: "⚠️ IMPACTO DE RESISTENCIA",
+    quote: "«Hoy no dormí bien... Mejor lo hago mañana.»",
+    desc: "El entusiasmo se desvanece. Aparece el cansancio acumulado, las responsabilidades diarias y las ganas inconscientes de posponer.",
+    dopamine: 40,
+    energy: 50,
+    focus: 40,
+    color: "text-amber-500",
+    glow: "hover:border-amber-500/30",
+    bgClass: "bg-amber-500/15 border-amber-500/20",
+    colorHex: "#f59e0b",
+    actionTip: "Aquí es donde caes si no tienes un ambiente diseñado. Con el Tomo II aprendes a mecanizar la acción sin depender de tus ganas.",
+    iconName: "AlertTriangle"
+  },
+  {
+    num: "04",
+    label: "ABANDONO",
+    title: "❌ CAÍDA SILENCIOSA",
+    quote: "«Ya rompí la racha hoy. Qué más da...»",
+    desc: "Postergas el primer día. Luego el segundo. Rompes la cadena de hábitos de golpe, y el impulso inicial se extingue por completo.",
+    dopamine: 15,
+    energy: 25,
+    focus: 10,
+    color: "text-red-500",
+    glow: "hover:border-red-500/30",
+    bgClass: "bg-red-500/10 border-red-500/20",
+    colorHex: "#ef4444",
+    actionTip: "La regla de 'Nunca fallar 2 veces consecutivas' del Tomo II protege tu consistencia ante cualquier desvío imprevisto.",
+    iconName: "X"
+  },
+  {
+    num: "05",
+    label: "FRUSTRACIÓN",
+    title: "💀 DIÁLOGO DE AUTOSABOTAJE",
+    quote: "«No sirvo para esto. No tengo fuerza de voluntad.»",
+    desc: "Cae tu autoestima al piso. Crees que tu inacción se debe a un defecto en tu cerebro, tu genética o tu falta de carácter personal.",
+    dopamine: 5,
+    energy: 10,
+    focus: 5,
+    color: "text-red-700",
+    glow: "hover:border-red-700/30",
+    bgClass: "bg-red-700/10 border-red-700/20",
+    colorHex: "#b91c1c",
+    actionTip: "La fuerza de voluntad es biológicamente finita. El problema no eres tú; el problema es sostener un sistema que está roto de raíz.",
+    iconName: "Skull"
+  },
+  {
+    num: "06",
+    label: "REINICIO",
+    title: "🔄 FALSO NUEVO COMIENZO",
+    quote: "«Comienzo el lunes sin falta.»",
+    desc: "Esperas pasivamente que termine la semana, que llegue otro lunes, otro mes o ver otra frase motivadora para repetir el ciclo.",
+    dopamine: 55,
+    energy: 35,
+    focus: 20,
+    color: "text-zinc-400",
+    glow: "hover:border-zinc-400/30",
+    bgClass: "bg-zinc-500/10 border-zinc-500/20",
+    colorHex: "#a1a1aa",
+    actionTip: "Romper el ciclo requiere un Pacto de Hierro (explicado en el Tomo III) para desvincular tus emociones de tu ejecución diaria.",
+    iconName: "RefreshCw"
+  }
+];
 
 interface LandingPageProps {
   onTriggerCheckout: () => void;
@@ -27,8 +126,28 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
   // Active state for transformation process hover index
   const [activeStage, setActiveStage] = useState<number | null>(null);
 
+  // Active state for motivation comparison section
+  const [motivationState, setMotivationState] = useState<"motivation" | "focus">("focus");
+
   // Selected stage for the interactive diagnostic timeline
   const [selectedTimelineStage, setSelectedTimelineStage] = useState(0);
+  const [isPlayingSimulation, setIsPlayingSimulation] = useState(false);
+
+  // Auto-play interval for the loop simulation
+  useEffect(() => {
+    let interval: any = null;
+    if (isPlayingSimulation) {
+      interval = setInterval(() => {
+        setSelectedTimelineStage((prev) => (prev + 1) % 6);
+      }, 2500);
+    }
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [isPlayingSimulation]);
+
+  // Active filter for testimonials
+  const [filtroTestimonio, setFiltroTestimonio] = useState<string>("todos");
 
   useEffect(() => {
     const names = [
@@ -177,305 +296,267 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
         </div>
       </section>
 
-
       {/* ==========================================================
-          SECCIÓN 3: DIAGNÓSTICO EMOCIONAL DEL CICLO DE INCONSISTENCIA
+          SECCIÓN 3: DIAGNÓSTICO EMOCIONAL DEL CICLO DE INCONSISTENCIA (SIMULADOR DE BUCLE INTERACTIVO)
           ========================================================== */}
-      <section className="py-24 px-6 md:px-12 bg-black border-b border-zinc-900">
-        <div className="max-w-4xl mx-auto space-y-16">
+      <section className="py-24 px-6 md:px-12 bg-black border-b border-zinc-900 overflow-hidden">
+        <div className="max-w-5xl mx-auto space-y-12">
           
+          {/* Header */}
           <div className="text-center space-y-6">
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6.5xl font-black text-white uppercase tracking-tight leading-tight">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tight leading-tight">
               SIEMPRE EMPIEZAS FUERTE. <br/>
               <span className="text-brand-orange block mt-2">SIEMPRE TERMINAS EN EL MISMO LUGAR.</span>
             </h2>
+            
             <div className="max-w-2xl mx-auto space-y-3 pt-2">
               <p className="text-zinc-500 font-mono text-[10px] sm:text-xs uppercase tracking-widest flex flex-wrap justify-center gap-x-4 gap-y-1">
-                <span>No te falta inteligencia.</span>
+                <span>No te falta inteligencia</span>
                 <span className="text-zinc-800">•</span>
-                <span>No te falta potencial.</span>
+                <span>No te falta potencial</span>
                 <span className="text-zinc-800">•</span>
-                <span>No te falta información.</span>
+                <span>No te falta información</span>
               </p>
-              <p className="text-zinc-300 text-sm sm:text-lg font-medium leading-relaxed max-w-xl mx-auto pt-2">
-                Te falta un sistema que funcione cuando la motivación desaparece.
+              <p className="text-zinc-300 text-sm sm:text-base font-medium max-w-lg mx-auto">
+                Te falta un sistema biológicamente viable que funcione de manera automática cuando la motivación desaparece de tu torrente sanguíneo.
               </p>
             </div>
           </div>
 
-          {/* Interactive Visual Timeline */}
-          <div className="space-y-10">
-            {/* Timeline track nodes */}
-            <div className="relative">
-              {/* Connector line behind */}
-              <div className="absolute top-1/2 left-4 right-4 h-0.5 bg-zinc-90 w-[calc(100%-2rem)] -translate-y-1/2 z-0 hidden md:block" />
-              
-              {/* Dynamic glowing active bar segment */}
-              <div 
-                className="absolute top-1/2 left-4 h-0.5 bg-brand-orange -translate-y-1/2 z-0 transition-all duration-500 hidden md:block" 
-                style={{
-                  width: `${(selectedTimelineStage / 5) * 85}%`,
-                  backgroundImage: "linear-gradient(to right, #f97316, #d97706)"
-                }}
-              />
-
-              <div className="grid grid-cols-2 md:grid-cols-6 gap-4 relative z-10">
-                {[
-                  { label: "MOTIVACIÓN", num: "01", icon: Flame, color: "text-orange-500", glow: "hover:border-orange-500/40" },
-                  { label: "ACCIÓN INTENSA", num: "02", icon: Zap, color: "text-yellow-400", glow: "hover:border-yellow-400/40" },
-                  { label: "REALIDAD", num: "03", icon: AlertTriangle, color: "text-amber-600", glow: "hover:border-amber-600/40" },
-                  { label: "ABANDONO", num: "04", icon: X, color: "text-red-500", glow: "hover:border-red-500/40" },
-                  { label: "FRUSTRACIÓN", num: "05", icon: Skull, color: "text-red-700", glow: "hover:border-red-700/40" },
-                  { label: "REINICIO", num: "06", icon: RefreshCw, color: "text-zinc-500", glow: "hover:border-zinc-500/40" }
-                ].map((step, idx) => {
-                  const IconComponent = step.icon;
-                  const isSelected = selectedTimelineStage === idx;
-                  return (
-                    <button
-                      key={idx}
-                      onClick={() => setSelectedTimelineStage(idx)}
-                      className={`flex flex-col items-center p-4 rounded-xl border transition-all duration-300 text-center cursor-pointer group ${
-                        isSelected 
-                          ? "bg-zinc-950 border-zinc-700/80 shadow-[0_4px_25px_rgba(255,255,255,0.03)]" 
-                          : "bg-zinc-950/40 border-zinc-900/60 " + step.glow
-                      }`}
-                    >
-                      <div className={`h-10 w-10 rounded-full flex items-center justify-center transition-all duration-300 ${
-                        isSelected 
-                          ? "bg-zinc-900 scale-110 ring-2 ring-brand-orange" 
-                          : "bg-zinc-950 border border-zinc-900 group-hover:scale-105"
-                      }`}>
-                        <IconComponent className={`h-5 w-5 ${isSelected ? step.color : "text-zinc-500 group-hover:text-zinc-300"}`} />
-                      </div>
-                      <span className="text-[10px] font-mono text-zinc-500 mt-3 uppercase tracking-wider block font-bold">ETAPA {step.num}</span>
-                      <span className={`text-[11px] font-display font-medium uppercase tracking-tight mt-1 transition-colors ${
-                        isSelected ? "text-white font-black" : "text-zinc-400"
-                      }`}>{step.label}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Diagnostic Details Screen */}
-            <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 sm:p-8 min-h-[160px] relative overflow-hidden transition-all duration-300 shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
-              {/* Dynamic soft background glow */}
-              <div 
-                className="absolute -right-16 -top-16 w-48 h-48 rounded-full blur-[80px] pointer-events-none opacity-20 transition-all duration-700"
-                style={{
-                  backgroundColor: 
-                    selectedTimelineStage === 0 ? "#f97316" :
-                    selectedTimelineStage === 1 ? "#eab308" :
-                    selectedTimelineStage === 2 ? "#d97706" :
-                    selectedTimelineStage === 3 ? "#ef4444" :
-                    selectedTimelineStage === 4 ? "#b91c1c" : "#71717a"
-                }}
-              />
-
-              <AnimatePresence mode="wait">
-                {selectedTimelineStage === 0 && (
-                  <motion.div
-                    key="stage-0"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    className="space-y-4"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="h-2 w-2 rounded-full bg-orange-500 animate-ping" />
-                      <span className="text-orange-500 font-mono text-xs uppercase tracking-widest font-black">ETAPA 1</span>
-                      <h3 className="text-xl font-display font-black text-white tracking-wide uppercase">🔥 MOTIVACIÓN</h3>
-                    </div>
-                    <div className="border-l-2 border-orange-500/20 pl-4 py-1">
-                      <p className="text-xl sm:text-2xl font-display italic font-light text-zinc-300">
-                        "Esta vez sí voy a cambiar."
-                      </p>
-                    </div>
-                  </motion.div>
-                )}
-
-                {selectedTimelineStage === 1 && (
-                  <motion.div
-                    key="stage-1"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    className="space-y-4"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="h-2 w-2 rounded-full bg-yellow-400 animate-ping" />
-                      <span className="text-yellow-400 font-mono text-xs uppercase tracking-widest font-black">ETAPA 2</span>
-                      <h3 className="text-xl font-display font-black text-white tracking-wide uppercase">⚡ ACCIÓN INTENSA</h3>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pl-1 pt-1">
-                      {[
-                        "Empiezas con energía.",
-                        "Lees.",
-                        "Planificas.",
-                        "Te esfuerzas."
-                      ].map((item, i) => (
-                        <div key={i} className="flex items-center gap-2.5 bg-zinc-900/40 border border-zinc-900 py-3 px-4 rounded-xl">
-                          <Check className="h-4 w-4 text-yellow-400 shrink-0" />
-                          <span className="text-sm font-sans text-zinc-300 font-medium">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-
-                {selectedTimelineStage === 2 && (
-                  <motion.div
-                    key="stage-2"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    className="space-y-4"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="h-2 w-2 rounded-full bg-amber-605 animate-ping" />
-                      <span className="text-amber-600 font-mono text-xs uppercase tracking-widest font-black">ETAPA 3</span>
-                      <h3 className="text-xl font-display font-black text-white tracking-wide uppercase">⚠️ REALIDAD</h3>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pl-1 pt-1">
-                      {[
-                        "Aparece el cansancio.",
-                        "Aparecen las excusas.",
-                        "Aparece la resistencia."
-                      ].map((item, i) => (
-                        <div key={i} className="flex items-center gap-2.5 bg-zinc-900/60 border border-zinc-900/80 py-3 px-4 rounded-xl">
-                          <AlertTriangle className="h-4 w-4 text-amber-600 shrink-0" />
-                          <span className="text-sm font-sans text-zinc-300 font-medium">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-
-                {selectedTimelineStage === 3 && (
-                  <motion.div
-                    key="stage-3"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    className="space-y-4"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="h-2 w-2 rounded-full bg-red-500 animate-ping" />
-                      <span className="text-red-500 font-mono text-xs uppercase tracking-widest font-black">ETAPA 4</span>
-                      <h3 className="text-xl font-display font-black text-white tracking-wide uppercase">❌ ABANDONO</h3>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pl-1 pt-1">
-                      {[
-                        "Rompes tu rutina.",
-                        "Postergas.",
-                        "Pierdes impulso."
-                      ].map((item, i) => (
-                        <div key={i} className="flex items-center gap-2.5 bg-zinc-900/60 border border-zinc-900/80 py-3 px-4 rounded-xl">
-                          <X className="h-4 w-4 text-red-500 shrink-0" />
-                          <span className="text-sm font-sans text-zinc-300 font-medium">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-
-                {selectedTimelineStage === 4 && (
-                  <motion.div
-                    key="stage-4"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    className="space-y-4"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="h-2 w-2 rounded-full bg-red-700 animate-ping" />
-                      <span className="text-red-700 font-mono text-xs uppercase tracking-widest font-black">ETAPA 5</span>
-                      <h3 className="text-xl font-display font-black text-white tracking-wide uppercase">💀 FRUSTRACIÓN</h3>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pl-1 pt-1">
-                      {[
-                        "Pierdes confianza en ti mismo.",
-                        "Empiezas a creer que eres el problema."
-                      ].map((item, i) => (
-                        <div key={i} className="flex items-center gap-2.5 bg-zinc-905 border border-zinc-900/80 py-3 px-4 rounded-xl">
-                          <Skull className="h-4 w-4 text-red-700 shrink-0" />
-                          <span className="text-sm font-sans text-zinc-300 font-medium">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-
-                {selectedTimelineStage === 5 && (
-                  <motion.div
-                    key="stage-5"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    className="space-y-4"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="h-2 w-2 rounded-full bg-zinc-500 animate-ping" />
-                      <span className="text-zinc-500 font-mono text-xs uppercase tracking-widest font-black">ETAPA 6</span>
-                      <h3 className="text-xl font-display font-black text-white tracking-wide uppercase">🔄 REINICIO</h3>
-                    </div>
-                    <div className="space-y-3 pl-1">
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        {[
-                          "Esperas otro lunes.",
-                          "Otro mes.",
-                          "Otro video motivacional."
-                        ].map((item, i) => (
-                          <div key={i} className="flex items-center gap-2.5 bg-zinc-900/40 border border-zinc-900 py-3 px-4 rounded-xl">
-                            <span className="text-[11px] font-mono font-bold text-zinc-500 bg-zinc-900 h-5 w-5 rounded-full flex items-center justify-center shrink-0">
-                              {i + 1}
-                            </span>
-                            <span className="text-sm font-sans text-zinc-300 font-medium">{item}</span>
-                          </div>
-                        ))}
-                      </div>
-                      <p className="text-sm font-sans font-bold text-zinc-400 pt-2 pl-1 animate-pulse">
-                        ➔ Y el ciclo vuelve a comenzar.
-                      </p>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
-
-          {/* Caja de impacto visual - EL COSTO REAL */}
-          <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 sm:p-8 relative max-w-2xl mx-auto space-y-6 shadow-xl">
-            <div className="flex items-center gap-3 border-b border-zinc-900 pb-4">
-              <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
-              <h3 className="font-display font-black text-white tracking-widest text-lg sm:text-xl uppercase">
-                EL COSTO REAL
-              </h3>
-            </div>
+          {/* SIMULATOR HUB CARD */}
+          <div className="bg-zinc-950/60 border border-zinc-900 rounded-3xl p-6 sm:p-8 backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative mt-8">
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Absolute accent background glow */}
+            <div 
+              className="absolute -right-24 -top-24 w-80 h-80 rounded-full blur-[110px] pointer-events-none opacity-15 transition-all duration-700"
+              style={{ backgroundColor: STAGES_DATA[selectedTimelineStage].colorHex }}
+            />
+
+            {/* Dashboard grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
+              
+              {/* LEFT: Stage Track Selector (5-Cols) */}
+              <div className="lg:col-span-5 space-y-6">
+                
+                {/* Control Title */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-900 pb-4">
+                  <div>
+                    <h3 className="font-display font-black text-white text-xs tracking-wider uppercase">SIMULADOR DE FASES</h3>
+                    <p className="text-[10px] text-zinc-500 font-mono uppercase">Haz clic en una etapa o inicia el análisis dinámico</p>
+                  </div>
+                  
+                  {/* Play / Pause button */}
+                  <button
+                    onClick={() => setIsPlayingSimulation(!isPlayingSimulation)}
+                    className={`px-3 py-1.5 rounded-xl text-[10px] font-mono font-black uppercase tracking-wider flex items-center gap-1.5 transition-all duration-300 cursor-pointer ${
+                      isPlayingSimulation 
+                        ? "bg-red-500/10 text-red-400 border border-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.1)]" 
+                        : "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/25"
+                    }`}
+                  >
+                    {isPlayingSimulation ? (
+                      <>
+                        <Pause className="h-3 w-3 shrink-0 animate-pulse text-red-400" />
+                        <span>Detener</span>
+                      </>
+                    ) : (
+                      <>
+                        <Play className="h-3 w-3 shrink-0 text-emerald-400" />
+                        <span>Simular Bucle</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                {/* Vertical interactive track list */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-2.5">
+                  {STAGES_DATA.map((stage, idx) => {
+                    const isSelected = selectedTimelineStage === idx;
+                    const IconComp = (() => {
+                      switch (stage.iconName) {
+                        case "Flame": return Flame;
+                        case "Zap": return Zap;
+                        case "AlertTriangle": return AlertTriangle;
+                        case "X": return X;
+                        case "Skull": return Skull;
+                        case "RefreshCw": return RefreshCw;
+                        default: return Check;
+                      }
+                    })();
+
+                    return (
+                      <button
+                        key={idx}
+                        onClick={() => {
+                          setSelectedTimelineStage(idx);
+                          setIsPlayingSimulation(false); // Pause auto-simulation on manual tap
+                        }}
+                        className={`flex items-center gap-3 p-3 rounded-xl border text-left transition-all duration-300 cursor-pointer group relative ${
+                          isSelected 
+                            ? "bg-zinc-950 border-zinc-800 shadow-[0_4px_15px_rgba(0,0,0,0.6)]" 
+                            : "bg-zinc-950/20 border-zinc-900/60 " + stage.glow
+                        }`}
+                      >
+                        {/* Selector marker */}
+                        {isSelected && (
+                          <motion.div 
+                            layoutId="activeIndicator"
+                            className="absolute left-0 top-1/4 bottom-1/4 w-0.75 bg-brand-orange rounded-r-full"
+                          />
+                        )}
+
+                        <div className={`h-8 w-8 rounded-lg flex items-center justify-center shrink-0 transition-all ${
+                          isSelected ? "bg-zinc-900 text-white ring-1 ring-zinc-800" : "bg-black/30 text-zinc-650 group-hover:text-zinc-400"
+                        }`}>
+                          <IconComp className={`h-4.5 w-4.5 ${isSelected ? stage.color : "text-zinc-600"}`} />
+                        </div>
+
+                        <div className="min-w-0 flex-1 leading-tight">
+                          <span className="text-[8px] font-mono font-bold block text-zinc-600">FASE {stage.num}</span>
+                          <span className={`text-[10px] font-display font-extrabold uppercase tracking-wide truncate block ${
+                            isSelected ? "text-white" : "text-zinc-500"
+                          }`}>
+                            {stage.label}
+                          </span>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* RIGHT: Real-time Telemetry Dashboard (7-Cols) */}
+              <div className="lg:col-span-7 bg-zinc-950/90 border border-zinc-900 rounded-2xl p-5 sm:p-6 space-y-6">
+                
+                {/* Stage Header Info */}
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-900/80 pb-4">
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex h-2.5 w-2.5 relative">
+                      <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
+                        selectedTimelineStage >= 3 ? "bg-red-500" : "bg-emerald-500"
+                      }`} />
+                      <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${
+                        selectedTimelineStage >= 3 ? "bg-red-500" : "bg-emerald-500"
+                      }`} />
+                    </span>
+                    <span className="font-mono text-[9px] uppercase tracking-widest text-zinc-500 font-extrabold">Telemetría de Comportamiento</span>
+                  </div>
+                  
+                  <span className={`px-2 py-0.5 rounded-md font-mono text-[9px] font-black tracking-widest border ${STAGES_DATA[selectedTimelineStage].bgClass} ${STAGES_DATA[selectedTimelineStage].color}`}>
+                    PROCESO DE AUTOSABOTAJE
+                  </span>
+                </div>
+
+                {/* Animated Phase Content Section */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={selectedTimelineStage}
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    transition={{ duration: 0.25 }}
+                    className="space-y-6"
+                  >
+                    {/* Stage Title and Quote */}
+                    <div className="space-y-3">
+                      <h4 className="text-xl font-display font-black text-white uppercase tracking-wide">
+                        {STAGES_DATA[selectedTimelineStage].title}
+                      </h4>
+                      <p className="text-sm italic font-display font-light text-zinc-400 bg-zinc-900/20 border-l border-zinc-800 pl-3 py-1">
+                        {STAGES_DATA[selectedTimelineStage].quote}
+                      </p>
+                    </div>
+
+                    {/* Compact Punchy text */}
+                    <p className="text-xs text-zinc-450 leading-relaxed font-sans">
+                      {STAGES_DATA[selectedTimelineStage].desc}
+                    </p>
+
+                    {/* BIOCHEMICAL METRICS METERS */}
+                    <div className="space-y-3 pt-2">
+                      <h5 className="text-[9px] font-mono font-black text-zinc-550 uppercase tracking-widest">Niveles Bioquímicos de Ejecución</h5>
+                      
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+                        {/* Meter 1 */}
+                        <div className="space-y-1">
+                          <div className="flex justify-between text-[9px] font-mono text-zinc-500">
+                            <span>RESERVA DE DOPAMINA</span>
+                            <span className="font-bold text-zinc-300">{STAGES_DATA[selectedTimelineStage].dopamine}%</span>
+                          </div>
+                          <div className="h-1.5 w-full bg-zinc-900/60 rounded-full overflow-hidden">
+                            <div 
+                              className="h-full rounded-full transition-all duration-350"
+                              style={{ 
+                                width: `${STAGES_DATA[selectedTimelineStage].dopamine}%`,
+                                backgroundColor: STAGES_DATA[selectedTimelineStage].dopamine > 70 ? "#10b981" : STAGES_DATA[selectedTimelineStage].dopamine > 30 ? "#f59e0b" : "#ef4444" 
+                              }}
+                            />
+                          </div>
+                        </div>
+
+                        {/* Meter 2 */}
+                        <div className="space-y-1">
+                          <div className="flex justify-between text-[9px] font-mono text-zinc-500">
+                            <span>ENERGÍA EJECUTIVA</span>
+                            <span className="font-bold text-zinc-300">{STAGES_DATA[selectedTimelineStage].energy}%</span>
+                          </div>
+                          <div className="h-1.5 w-full bg-zinc-900/60 rounded-full overflow-hidden">
+                            <div 
+                              className="h-full rounded-full transition-all duration-350"
+                              style={{ 
+                                width: `${STAGES_DATA[selectedTimelineStage].energy}%`,
+                                backgroundColor: STAGES_DATA[selectedTimelineStage].energy > 70 ? "#10b981" : STAGES_DATA[selectedTimelineStage].energy > 30 ? "#f59e0b" : "#ef4444" 
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* DIAGNOSTIC ESCAPE STATEMENT */}
+                    <div className="p-3.5 bg-black/50 border border-zinc-900 rounded-xl space-y-1">
+                      <span className="text-[8px] font-mono font-bold text-brand-orange uppercase block tracking-wider">EL RESCATE REQUERIDO:</span>
+                      <p className="text-[10px] text-zinc-400 font-sans leading-relaxed">
+                        {STAGES_DATA[selectedTimelineStage].actionTip}
+                      </p>
+                    </div>
+
+                  </motion.div>
+                </AnimatePresence>
+                
+              </div>
+
+            </div>
+          </div>
+
+          {/* COMPACT & AESTHETIC METRIC: THE REAL COST */}
+          <div className="max-w-4xl mx-auto pt-6 text-center">
+            <span className="text-[9px] font-mono font-black text-zinc-550 uppercase tracking-widest block mb-4">Consecuencia Acumulada</span>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
-                "Objetivos abandonados",
-                "Promesas rotas",
-                "Menos confianza",
-                "Menos autoestima",
-                "Menos respeto propio",
-                "Mismos resultados año tras año"
+                { title: "AUTOFÉ DEBILITADA", desc: "Cada promesa que te rompes a ti mismo deteriora tu autoconfianza profunda." },
+                { title: "ANSIEDAD SILENCIOSA", desc: "La culpa mental constante de saber lo que debes hacer y postergarlo indefinidamente." },
+                { title: "FRICCIÓN DE IDENTIDAD", desc: "Te acostumbras a vivir bajo tus capacidades reales y te adaptas al conformismo." }
               ].map((item, idx) => (
-                <div key={idx} className="flex items-start gap-3 p-3 bg-black/40 border border-zinc-900/60 rounded-xl hover:border-red-950/40 transition-colors">
-                  <span className="text-red-500 select-none font-sans mt-0.5 shrink-0 text-xs">❌</span>
-                  <span className="text-zinc-300 font-sans text-sm font-semibold">{item}</span>
+                <div key={idx} className="bg-zinc-950/40 border border-zinc-900/80 p-4 rounded-2xl text-center hover:border-zinc-800 transition-colors">
+                  <h4 className="text-[11px] font-mono font-black text-red-500 uppercase tracking-wider mb-1">
+                    [ {item.title} ]
+                  </h4>
+                  <p className="text-[10px] text-zinc-500 font-sans leading-snug">
+                    {item.desc}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Ending arrow and focus realization phrase */}
+          {/* Realization Title */}
           <div className="text-center pt-8 space-y-8">
             <motion.div 
               animate={{ y: [0, 8, 0] }}
               transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-              className="text-brand-orange text-5xl sm:text-6xl font-black select-none pointer-events-none"
+              className="text-brand-orange text-4xl sm:text-5xl font-black select-none pointer-events-none"
             >
               ↓
             </motion.div>
@@ -488,257 +569,7 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
                 ES QUE NUNCA TE ENSEÑARON A CONSTRUIR UN SISTEMA.
               </p>
             </div>
-          </div>
 
-        </div>
-      </section>
-
-      {/* ==========================================================
-          SECCIÓN 4: PROCESO DE TRANSFORMACIÓN EN GRANDE
-          Objetivo: Mostrar la evolución visual y progresiva de la trilogía
-          ========================================================== */}
-      <section className="py-24 px-6 md:px-12 bg-black border-b border-zinc-900">
-        <div className="max-w-4xl mx-auto space-y-20">
-          
-          <div className="text-center space-y-6">
-            <span className="text-brand-orange font-mono text-[10px] sm:text-xs font-bold uppercase tracking-widest bg-brand-orange/10 px-3.5 py-1.5 rounded-full border border-brand-orange/20 inline-block">SISTEMA PROGRESIVO DE ALTO ENFOQUE</span>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-5.5xl font-black text-white uppercase tracking-tight leading-tight">
-              LA TRANSFORMACIÓN NO OCURRE POR MOTIVACIÓN. <br />
-              <span className="text-brand-orange block mt-2">OCURRE POR CONSTRUCCIÓN.</span>
-            </h2>
-            <div className="max-w-2xl mx-auto pt-2 space-y-2">
-              <p className="text-zinc-500 font-mono text-[10px] sm:text-xs uppercase tracking-widest flex flex-wrap justify-center gap-x-4 gap-y-1">
-                <span>Primero cambias tu mente.</span>
-                <span className="text-zinc-805">•</span>
-                <span>Después automatizas tus acciones.</span>
-                <span className="text-zinc-850">•</span>
-                <span>Finalmente te conviertes en alguien que ejecuta.</span>
-              </p>
-            </div>
-          </div>
-
-          {/* Premium Vertical Progress Line */}
-          <div className="relative max-w-3xl mx-auto py-8">
-            {/* Background/Passive connector line */}
-            <div className="absolute left-6 sm:left-10 md:left-12 top-4 bottom-4 w-[2px] bg-zinc-900 rounded-full" />
-            
-            {/* Illuminated glowing connector segment line */}
-            <div className="absolute left-6 sm:left-10 md:left-12 top-4 bottom-16 w-[2px] bg-gradient-to-b from-brand-orange via-yellow-500 to-amber-700 rounded-full shadow-[0_0_15px_rgba(249,115,22,0.55)]" />
-
-            <div className="space-y-16">
-              
-              {/* FASE 1 */}
-              <div className="relative pl-14 sm:pl-20 md:pl-24 group">
-                {/* Illuminated Icon Node */}
-                <div className="absolute left-6 sm:left-10 md:left-12 -translate-x-1/2 top-1.5 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-zinc-950 border-2 border-brand-orange flex items-center justify-center text-lg sm:text-xl shadow-[0_0_20px_rgba(249,115,22,0.45)] group-hover:shadow-[0_0_30px_rgba(249,115,22,0.65)] transition-all duration-300 z-10">
-                  🧠
-                </div>
-
-                <div className="bg-zinc-950 border border-zinc-900/60 hover:border-brand-orange/30 rounded-2xl p-6 sm:p-8 space-y-4 transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.4)] hover:shadow-[0_10px_35px_rgba(249,115,22,0.05)]">
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-                    <span className="text-brand-orange font-mono text-[9px] sm:text-[10px] uppercase font-black tracking-widest bg-brand-orange/15 px-2.5 py-1 rounded-md border border-brand-orange/20">FASE 1</span>
-                    <span className="text-zinc-500 font-mono text-xs uppercase tracking-wider font-bold">• MENTALIDAD •</span>
-                    <span className="text-zinc-400 font-mono text-[10px] uppercase font-bold bg-zinc-900 px-2.5 py-0.5 rounded border border-zinc-850">LIBRO 1</span>
-                  </div>
-
-                  <h3 className="font-display font-black text-white text-xl sm:text-2xl tracking-tight uppercase">
-                    DOMINAS TU MENTE
-                  </h3>
-
-                  <div className="space-y-3 pt-2">
-                    <span className="text-zinc-500 font-mono text-[10px] uppercase tracking-wider block font-bold">Problemas que elimina:</span>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {[
-                        "Victimismo",
-                        "Excusas",
-                        "Falta de dirección",
-                        "Dependencia emocional"
-                      ].map((prob, i) => (
-                        <div key={i} className="flex items-center gap-2.5 bg-black/40 border border-zinc-900/40 py-2.5 px-3 rounded-xl">
-                          <span className="text-red-500 text-xs select-none">❌</span>
-                          <span className="text-zinc-300 font-sans text-xs sm:text-sm font-semibold">{prob}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="border-t border-zinc-900/80 pt-4 mt-2">
-                    <span className="text-zinc-500 font-mono text-[10px] uppercase tracking-wider block font-bold mb-1.5">Resultado:</span>
-                    <p className="text-zinc-200 font-display text-sm sm:text-base font-bold italic">
-                      ➔ Empiezas a pensar como una persona que ejecuta.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* FASE 2 */}
-              <div className="relative pl-14 sm:pl-20 md:pl-24 group">
-                {/* Illuminated Icon Node */}
-                <div className="absolute left-6 sm:left-10 md:left-12 -translate-x-1/2 top-1.5 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-zinc-950 border-2 border-yellow-500 flex items-center justify-center text-lg sm:text-xl shadow-[0_0_20px_rgba(234,179,8,0.35)] group-hover:shadow-[0_0_30px_rgba(234,179,8,0.55)] transition-all duration-300 z-10">
-                  ⚙️
-                </div>
-
-                <div className="bg-zinc-950 border border-zinc-900/60 hover:border-yellow-500/20 rounded-2xl p-6 sm:p-8 space-y-4 transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.4)] hover:shadow-[0_10px_35px_rgba(234,179,8,0.03)]">
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-                    <span className="text-yellow-500 font-mono text-[9px] sm:text-[10px] uppercase font-black tracking-widest bg-yellow-500/10 px-2.5 py-1 rounded-md border border-yellow-500/10">FASE 2</span>
-                    <span className="text-zinc-500 font-mono text-xs uppercase tracking-wider font-bold">• HÁBITOS •</span>
-                    <span className="text-zinc-400 font-mono text-[10px] uppercase font-bold bg-zinc-900 px-2.5 py-0.5 rounded border border-zinc-850">LIBRO 2</span>
-                  </div>
-
-                  <h3 className="font-display font-black text-white text-xl sm:text-2xl tracking-tight uppercase">
-                    AUTOMATIZAS TU ÉXITO
-                  </h3>
-
-                  <div className="space-y-3 pt-2">
-                    <span className="text-zinc-500 font-mono text-[10px] uppercase tracking-wider block font-bold">Problemas que elimina:</span>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {[
-                        "Procrastinación",
-                        "Desorden",
-                        "Falta de enfoque",
-                        "Improvisación"
-                      ].map((prob, i) => (
-                        <div key={i} className="flex items-center gap-2.5 bg-black/40 border border-zinc-900/40 py-2.5 px-3 rounded-xl">
-                          <span className="text-red-500 text-xs select-none">❌</span>
-                          <span className="text-zinc-300 font-sans text-xs sm:text-sm font-semibold">{prob}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="border-t border-zinc-900/80 pt-4 mt-2">
-                    <span className="text-zinc-500 font-mono text-[10px] uppercase tracking-wider block font-bold mb-1.5">Resultado:</span>
-                    <p className="text-zinc-200 font-display text-sm sm:text-base font-bold italic">
-                      ➔ Dejas de depender de la motivación.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* FASE 3 */}
-              <div className="relative pl-14 sm:pl-20 md:pl-24 group">
-                {/* Illuminated Icon Node */}
-                <div className="absolute left-6 sm:left-10 md:left-12 -translate-x-1/2 top-1.5 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-zinc-950 border-2 border-red-500 flex items-center justify-center text-lg sm:text-xl shadow-[0_0_20px_rgba(239,68,68,0.35)] group-hover:shadow-[0_0_30px_rgba(239,68,68,0.55)] transition-all duration-300 z-10">
-                  🛡️
-                </div>
-
-                <div className="bg-zinc-950 border border-zinc-900/60 hover:border-red-500/20 rounded-2xl p-6 sm:p-8 space-y-4 transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.4)] hover:shadow-[0_10px_35px_rgba(239,68,68,0.03)]">
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-                    <span className="text-red-500 font-mono text-[9px] sm:text-[10px] uppercase font-black tracking-widest bg-red-500/10 px-2.5 py-1 rounded-md border border-red-500/10">FASE 3</span>
-                    <span className="text-zinc-500 font-mono text-xs uppercase tracking-wider font-bold">• DISCIPLINA •</span>
-                    <span className="text-zinc-400 font-mono text-[10px] uppercase font-bold bg-zinc-900 px-2.5 py-0.5 rounded border border-zinc-850">LIBRO 3</span>
-                  </div>
-
-                  <h3 className="font-display font-black text-white text-xl sm:text-2xl tracking-tight uppercase">
-                    TE CONVIERTES EN UN EJECUTOR
-                  </h3>
-
-                  <div className="space-y-3 pt-2">
-                    <span className="text-zinc-500 font-mono text-[10px] uppercase tracking-wider block font-bold">Problemas que elimina:</span>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {[
-                        "Pereza",
-                        "Inconsistencia",
-                        "Abandono",
-                        "Falta de autocontrol"
-                      ].map((prob, i) => (
-                        <div key={i} className="flex items-center gap-2.5 bg-black/40 border border-zinc-900/40 py-2.5 px-3 rounded-xl">
-                          <span className="text-red-500 text-xs select-none">❌</span>
-                          <span className="text-zinc-300 font-sans text-xs sm:text-sm font-semibold">{prob}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="border-t border-zinc-900/80 pt-4 mt-2">
-                    <span className="text-zinc-500 font-mono text-[10px] uppercase tracking-wider block font-bold mb-1.5">Resultado:</span>
-                    <p className="text-zinc-200 font-display text-sm sm:text-base font-bold italic">
-                      ➔ Haces lo que dijiste que ibas a hacer.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          {/* Bloque Final Gigante - NUEVA IDENTIDAD */}
-          <div className="relative pt-12">
-            <div className="bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 border-x-2 border-y border-brand-orange/40 rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-[0_20px_60px_rgba(249,115,22,0.15)] max-w-4xl mx-auto">
-              {/* Futuristic geometric line accents */}
-              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-orange/40 to-transparent" />
-              <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-orange/40 to-transparent" />
-              <div className="absolute -right-32 -top-32 w-80 h-80 rounded-full bg-brand-orange/10 blur-[120px] pointer-events-none" />
-              <div className="absolute -left-32 -bottom-32 w-80 h-80 rounded-full bg-orange-650/10 blur-[120px] pointer-events-none" />
-
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                {/* Left Side: Bold Statement */}
-                <div className="lg:col-span-5 text-left space-y-4">
-                  <span className="text-brand-orange font-mono text-[9px] font-black tracking-[0.2em] uppercase border border-brand-orange/30 px-3 py-1 rounded bg-brand-orange/10 inline-block shadow-[0_0_15px_rgba(249,115,22,0.1)]">
-                    TRANSFORMACIÓN INTEGRAL
-                  </span>
-                  <h3 className="font-display font-black text-white text-3xl sm:text-4xl lg:text-5xl tracking-tight uppercase leading-none">
-                    NUEVA <br className="hidden lg:block"/>IDENTIDAD
-                  </h3>
-                  <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed font-sans mt-2">
-                    El sistema no cambia simplemente lo que haces: cambia profundamente <strong className="text-white">quién eres</strong>. Cuando tu identidad se reconfigura, la disciplina deja de requerir esfuerzo mental porque se convierte en tu forma natural de operar.
-                  </p>
-                </div>
-
-                {/* Right Side: Immersive Visual Layout */}
-                <div className="lg:col-span-7 space-y-4">
-                  {/* The three clean blocks representing the core shifts */}
-                  <div className="space-y-2.5">
-                    {[
-                      { icon: "⚡", bold: "YA NO", text: "necesitas sentir ganas para actuar." },
-                      { icon: "✨", bold: "YA NO", text: "dependes de la inspiración para dar el paso." },
-                      { icon: "🔥", bold: "YA NO", text: "buscas o requieres de motivación externa." }
-                    ].map((item, i) => (
-                      <div key={i} className="bg-black/60 border border-zinc-900/80 hover:border-brand-orange/20 p-4 rounded-xl flex items-center space-x-4 transition-all duration-300">
-                        <span className="text-base shrink-0">{item.icon}</span>
-                        <p className="text-zinc-300 text-xs sm:text-sm font-sans leading-relaxed text-left">
-                          <strong className="text-brand-orange font-mono uppercase tracking-wider mr-1.5">{item.bold}</strong>
-                          {item.text}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="bg-gradient-to-r from-brand-orange/15 to-transparent border border-brand-orange/30 p-5 rounded-2xl space-y-4 text-left shadow-[inset_0_1px_20px_rgba(249,115,22,0.05)]">
-                    <p className="font-display font-black text-white text-sm sm:text-base uppercase tracking-wider flex items-center gap-2">
-                      <span className="h-2 w-2 rounded-full bg-brand-orange animate-pulse" />
-                      Te conviertes en la persona que ejecuta:
-                    </p>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                      {[
-                        { title: "INCONDICIONAL", desc: "Aunque no tengas ganas." },
-                        { title: "IMPARABLE", desc: "Aunque sea difícil." },
-                        { title: "SILENCIOSO", desc: "Aunque nadie te esté viendo." }
-                      ].map((item, i) => (
-                        <div key={i} className="bg-black/80 border border-zinc-900/60 rounded-lg p-3 text-left">
-                          <span className="block text-[9px] font-mono text-brand-orange font-black uppercase tracking-wider">{item.title}</span>
-                          <span className="block text-[10px] text-zinc-400 font-sans mt-0.5 leading-tight">{item.desc}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Frase final enorme */}
-          <div className="text-center pt-8 space-y-4">
-            <p className="font-mono text-brand-orange text-4xl sm:text-5xl select-none font-black animate-bounce">
-              ↓
-            </p>
-            <h4 className="font-display font-black text-zinc-500 text-lg sm:text-xl uppercase tracking-widest">
-              NO ES UNA TRILOGÍA DE LIBROS.
-            </h4>
-            <p className="font-display font-black text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl uppercase tracking-tight leading-none text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-300 to-brand-orange pb-2">
-              ES UN SISTEMA DE RECONSTRUCCIÓN PERSONAL.
-            </p>
           </div>
 
         </div>
@@ -1200,43 +1031,288 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
       </section>
 
       {/* ==========================================================
-          SECCIÓN 7: BENEFICIOS
-          Objetivo: Mostrar la ganancia de no depender de la motivación (Grid)
+          SECCIÓN 7: SISTEMA INTERACTIVO DE GANANCIA Y RECONSTRUCCIÓN
+          Objetivo: Mostrar la impresionante ganancia de no depender de la motivación y completar Focus Mindset
           ========================================================== */}
-      <section className="py-24 px-6 md:px-12 bg-zinc-995 bg-black border-b border-zinc-900">
-        <div className="max-w-5xl mx-auto space-y-16">
+      <section className="py-24 px-6 md:px-12 bg-black border-b border-zinc-900 overflow-hidden relative">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-brand-orange/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-red-650/5 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="max-w-5xl mx-auto space-y-12 relative z-10">
           
           <div className="text-center space-y-4">
-            <span className="text-brand-orange font-mono text-xxs font-bold uppercase tracking-wider">REFORZAMIENTO POSITIVO</span>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white uppercase tracking-tight">
-              LO QUE CAMBIA CUANDO DEJAS DE DEPENDER DE LA MOTIVACIÓN
+            <span className="text-brand-orange font-mono text-xs font-black tracking-widest bg-brand-orange/10 px-3 py-1 rounded-md border border-brand-orange/20 inline-block">SISTEMA INCONDICIONAL</span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight leading-none">
+              LO QUE CAMBIA AL COMPLETAR <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-amber-500">EL SISTEMA FOCUS MINDSET</span>
             </h2>
-            <p className="text-zinc-500 text-sm max-w-xl mx-auto">
-              La libertad no es hacer lo que quieres. La libertad es ser capaz de obligarte a hacer lo correcto a través de un sistema.
+            <p className="text-zinc-450 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed">
+              La motivación es una emoción impredecible y fisiológicamente inestable. Al completar esta trilogía construyes una estructura de ejecución fría que te blinda por completo contra tus propios estados de ánimo.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { label: "Más enfoque", desc: "Silencias las perturbaciones del scroll." },
-              { label: "Más disciplina", desc: "Actúas como una máquina sin dudar." },
-              { label: "Más confianza", desc: "Construyes respeto propio al cumplir." },
-              { label: "Más productividad", desc: "Haces en 2 horas lo que otros en días." },
-              { label: "Menos procrastinación", desc: "Anulas la justificación mental." },
-              { label: "Menos distracciones", desc: "Un entorno búnker que te protege" },
-              { label: "Más autocontrol", desc: "Soberanía total contra impulsos." },
-              { label: "Más resultados", desc: "Efecto compuesto en tu carrera." }
-            ].map((benefit, idx) => (
-              <div key={idx} className="bg-zinc-950 p-5 rounded-2xl border border-zinc-900 flex flex-col justify-between min-h-[120px] hover:border-brand-orange/20 transition-all">
-                <div className="h-8 w-8 rounded-lg bg-orange-500/5 flex items-center justify-center text-brand-orange mb-3">
-                  <Check className="h-4 w-4" />
+          {/* Interactive Toggle Switch */}
+          <div className="flex justify-center">
+            <div className="bg-zinc-950 p-1 rounded-2xl border border-zinc-900 flex max-w-md w-full relative">
+              <button
+                onClick={() => setMotivationState("motivation")}
+                className={`flex-1 py-3 text-center rounded-xl font-mono text-[10px] font-black uppercase tracking-wider transition-all duration-350 cursor-pointer relative z-10 ${
+                  motivationState === "motivation" ? "text-red-400" : "text-zinc-550 hover:text-zinc-300"
+                }`}
+              >
+                🔴 DEPENDENS DE MOTIVACIÓN
+              </button>
+              <button
+                onClick={() => setMotivationState("focus")}
+                className={`flex-1 py-3 text-center rounded-xl font-mono text-[10px] font-black uppercase tracking-wider transition-all duration-350 cursor-pointer relative z-10 ${
+                  motivationState === "focus" ? "text-brand-orange" : "text-zinc-550 hover:text-zinc-300"
+                }`}
+              >
+                🔥 SISTEMA COMPLETADO
+              </button>
+
+              {/* Background pill selector */}
+              <motion.div
+                className="absolute top-1 bottom-1 rounded-xl bg-zinc-900 border border-zinc-850 shadow-inner"
+                layoutId="motivationTogglePill"
+                transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                style={{
+                  left: motivationState === "motivation" ? "4px" : "calc(50% - 2px)",
+                  right: motivationState === "motivation" ? "calc(50% - 2px)" : "4px"
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Dynamic Comparison Dashboard */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch pt-4">
+            
+            {/* Left side: Interactive Stats and Visual Gauge */}
+            <div className="md:col-span-5 bg-zinc-950/60 border border-zinc-900 rounded-3xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden shadow-2xl">
+              <div className="space-y-6">
+                <div className="flex justify-between items-center border-b border-zinc-900 pb-4">
+                  <span className="font-mono text-[9px] text-zinc-500 uppercase tracking-widest font-black">Métrica de Rendimiento Humano</span>
+                  <span className="text-[9px] font-mono font-bold bg-zinc-900 px-2 py-0.5 rounded border border-zinc-850 text-zinc-400">LECTURA EN VIVO</span>
                 </div>
-                <div>
-                  <h4 className="text-white font-bold font-display text-sm uppercase tracking-wide leading-tight">{benefit.label}</h4>
-                  <p className="text-zinc-500 text-[11px] mt-1 font-sans">{benefit.desc}</p>
-                </div>
+
+                <AnimatePresence mode="wait">
+                  {motivationState === "motivation" ? (
+                    <motion.div
+                      key="gauge-motivation"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.25 }}
+                      className="space-y-6"
+                    >
+                      <div className="text-center py-4 relative">
+                        <div className="text-5xl font-display font-black text-red-500 uppercase tracking-tight">15%</div>
+                        <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest font-bold mt-1 block">EFECTIVIDAD DE ACCIÓN</span>
+                        {/* Static indicator bar */}
+                        <div className="w-24 h-1 bg-red-950 mx-auto mt-3 rounded-full overflow-hidden">
+                          <div className="h-full bg-red-500 w-[15%]" />
+                        </div>
+                      </div>
+
+                      <div className="space-y-3">
+                        <div className="flex justify-between text-[9px] font-mono text-zinc-550 uppercase">
+                          <span>Estabilidad Neuronal</span>
+                          <span className="text-red-400 font-extrabold">Inestable</span>
+                        </div>
+                        <div className="h-1.5 w-full bg-zinc-900 rounded-full overflow-hidden">
+                          <div className="h-full bg-red-650 w-[20%]" />
+                        </div>
+
+                        <div className="flex justify-between text-[9px] font-mono text-zinc-550 uppercase">
+                          <span>Horas Recuperadas / Día</span>
+                          <span className="text-red-400 font-extrabold">0 Horas</span>
+                        </div>
+                        <div className="h-1.5 w-full bg-zinc-900 rounded-full overflow-hidden">
+                          <div className="h-full bg-red-650 w-[5%]" />
+                        </div>
+
+                        <div className="flex justify-between text-[9px] font-mono text-zinc-550 uppercase">
+                          <span>Fuerza de Resistencia Psíquica</span>
+                          <span className="text-red-400 font-extrabold">Mínima</span>
+                        </div>
+                        <div className="h-1.5 w-full bg-zinc-900 rounded-full overflow-hidden">
+                          <div className="h-full bg-red-650 w-[12%]" />
+                        </div>
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="gauge-focus"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.25 }}
+                      className="space-y-6"
+                    >
+                      <div className="text-center py-4 relative">
+                        {/* Pulse effect */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 bg-brand-orange/5 rounded-full blur-xl animate-pulse" />
+                        <div className="text-5xl font-display font-black text-brand-orange uppercase tracking-tight relative z-10">95%</div>
+                        <span className="text-[9px] font-mono text-brand-orange uppercase tracking-widest font-black mt-1 block relative z-10">EFECTIVIDAD DE ACCIÓN</span>
+                        {/* Animated gradient bar */}
+                        <div className="w-24 h-1 bg-zinc-900 mx-auto mt-3 rounded-full overflow-hidden relative z-10">
+                          <div className="h-full bg-gradient-to-r from-brand-orange to-yellow-500 w-full" />
+                        </div>
+                      </div>
+
+                      <div className="space-y-3 relative z-10">
+                        <div className="flex justify-between text-[9px] font-mono text-zinc-450 uppercase">
+                          <span>Estabilidad Neuronal</span>
+                          <span className="text-emerald-400 font-extrabold">Piloto Automático</span>
+                        </div>
+                        <div className="h-1.5 w-full bg-zinc-900 rounded-full overflow-hidden">
+                          <div className="h-full bg-emerald-500 w-[95%]" />
+                        </div>
+
+                        <div className="flex justify-between text-[9px] font-mono text-zinc-450 uppercase">
+                          <span>Horas Recuperadas / Día</span>
+                          <span className="text-emerald-400 font-extrabold">+3 Horas Netas</span>
+                        </div>
+                        <div className="h-1.5 w-full bg-zinc-900 rounded-full overflow-hidden">
+                          <div className="h-full bg-emerald-500 w-[88%]" />
+                        </div>
+
+                        <div className="flex justify-between text-[9px] font-mono text-zinc-450 uppercase">
+                          <span>Fuerza de Resistencia Psíquica</span>
+                          <span className="text-emerald-400 font-extrabold">Barrera Impermeable</span>
+                        </div>
+                        <div className="h-1.5 w-full bg-zinc-900 rounded-full overflow-hidden">
+                          <div className="h-full bg-emerald-500 w-[98%]" />
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-            ))}
+
+              <div className="border-t border-zinc-900/80 pt-4 mt-6">
+                <p className="text-[10px] text-zinc-500 font-mono text-center uppercase tracking-wide">
+                  {motivationState === "motivation" 
+                    ? "⚠️ Al depender de estados emocionales, tu cerebro sabotea la acción diaria en cuanto se desvanece la dopamina." 
+                    : "⚡ Al automatizar el hábitat con el Sistema Focus, tu disciplina se vuelve tu estado por defecto."
+                  }
+                </p>
+              </div>
+            </div>
+
+            {/* Right side: Splitted dynamic comparison parameters */}
+            <div className="md:col-span-7 flex flex-col justify-between spacing-y-4">
+              <AnimatePresence mode="wait">
+                {motivationState === "motivation" ? (
+                  <motion.div
+                    key="content-motivation"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.25 }}
+                    className="grid grid-cols-1 gap-4"
+                  >
+                    {[
+                      {
+                        title: "1. Ejecución Bajo Emociones",
+                        desc: "Solo trabajas intensamente cuando te sientes inspirado. Esto genera un ciclo de fatiga insoportable: picos breves seguidos de semanas abandonado en la inacción profunda.",
+                        impact: "Resignación total e inconsistencia perpetua."
+                      },
+                      {
+                        title: "2. Fricción del Inicio Devastadora",
+                        desc: "Tu cerebro debate silenciosamente 'si tiene ganas' de arrancar cada racha de estudio o trabajo. En este debate, las ganas de procrastinar ganan el 85% de las veces.",
+                        impact: "Horas perdidas mirando la pantalla sin hacer nada."
+                      },
+                      {
+                        title: "3. Hábitat Permeable al Scroll",
+                        desc: "Tu entorno está gobernado por notificaciones y distracciones continuas. Tu fuerza de voluntad prefrontal lucha contra algoritmos diseñados por ingenieros de Silicon Valley.",
+                        impact: "Tu cerebro se funde y agota antes de dar el primer paso."
+                      }
+                    ].map((item, idx) => (
+                      <div key={idx} className="bg-zinc-950 border border-zinc-900 rounded-2xl p-5 hover:border-red-500/20 transition-all duration-300 text-left">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-red-500 text-xs">✕</span>
+                          <h4 className="font-display font-bold text-zinc-200 text-xs sm:text-sm uppercase tracking-wide">{item.title}</h4>
+                        </div>
+                        <p className="text-zinc-500 text-xs leading-relaxed font-sans">{item.desc}</p>
+                        <div className="mt-3 pt-2.5 border-t border-zinc-900/60 flex items-center gap-2">
+                          <span className="text-[10px] font-mono text-red-500/80 font-black tracking-wider uppercase bg-red-500/5 px-2 py-0.5 rounded border border-red-500/10">CONSECUENCIA:</span>
+                          <span className="text-zinc-400 font-sans text-xs italic">{item.impact}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="content-focus"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.25 }}
+                    className="grid grid-cols-1 gap-4"
+                  >
+                    {[
+                      {
+                        title: "1. Ejecución Incondicional (Tomo I)",
+                        desc: "Adquieres claridad radical e inmutable sobre tu dirección. Des programamos el victimismo biológico para que tu cerebro opere mecánicamente, independientemente de tus ganas hoy.",
+                        impact: "Haces lo que dijiste que ibas a hacer."
+                      },
+                      {
+                        title: "2. Fricción Cero e Inversa (Tomo II)",
+                        desc: "Reestructuramos físicamente tu háditat para que ejecutar un bloque de estudio o trabajo requiera menos esfuerzo que encender las redes. Tu productividad entra en piloto automático.",
+                        impact: "Eliminas la procrastinación en menos de 5 segundos."
+                      },
+                      {
+                        title: "3. Disciplina Blindada Ultra-Enfocada (Tomo III)",
+                        desc: "Sustentado por el Pacto de Hierro unilateral, desarmas el saboteo emocional diario. Mantienes un entorno blindado que opera como un escudo invisible contra emergencias o distracciones.",
+                        impact: "Soberanía total de tu enfoque y respeto propio."
+                      }
+                    ].map((item, idx) => (
+                      <div key={idx} className="bg-zinc-950 border border-zinc-900 rounded-2xl p-5 hover:border-emerald-550/30 transition-all duration-300 text-left relative overflow-hidden group">
+                        <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-emerald-400 text-sm font-bold">✓</span>
+                          <h4 className="font-display font-black text-white text-xs sm:text-sm uppercase tracking-wide">{item.title}</h4>
+                        </div>
+                        <p className="text-zinc-400 text-xs leading-relaxed font-sans">{item.desc}</p>
+                        <div className="mt-3 pt-2.5 border-t border-zinc-900/60 flex items-center gap-2">
+                          <span className="text-[10px] font-mono text-emerald-400 font-black tracking-wider uppercase bg-emerald-500/15 px-2 py-0.5 rounded border border-emerald-500/20">LO QUE GANAS:</span>
+                          <span className="text-emerald-400 font-sans text-xs font-bold">{item.impact}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+          </div>
+
+          {/* Tangible Reward Grid - What you actually receive and achieve */}
+          <div className="bg-gradient-to-r from-zinc-950 via-zinc-900/40 to-zinc-950 border border-zinc-900 rounded-3xl p-6 sm:p-8 text-center relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-orange/30 to-transparent" />
+            <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-orange/30 to-transparent" />
+            
+            <h3 className="font-display font-extrabold text-white text-lg sm:text-xl uppercase tracking-wider mb-2">
+              EL RETORNO DE INVERSIÓN: LO QUE CONSIGUES AL COMPLETAR LA TRILOGÍA
+            </h3>
+            <p className="text-zinc-500 text-xs max-w-2xl mx-auto mb-6">
+              Esta obra no está diseñada para acumular polvo en tu estantería. Está creada para inyectar un cambio fisiológico y mecánico inmediato en tu día a día.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {[
+                { title: "+3 HORAS AL DÍA", subtitle: "Soberanía del Tiempo", desc: "Al automatizar la rutina del Tomo II y reducir tus tiempos muertos de procrastinación inconsciente, recuperas un promedio de 15 a 20 horas netas por semana." },
+                { title: "98% DE ASOCIACIÓN AL PLAN", subtitle: "Predecibilidad de Metas", desc: "Nunca más te irás a dormir sintiendo la culpa de haber tenido un día vacío. Sigues tu cronograma diario con precisión quirúrgica gracias al Pacto de Hierro." },
+                { title: "ALTA AUTORIDAD PERSONAL", subtitle: "Soberanía Emocional", desc: "El fin definitivo del autoboicot. Desarrollas un carácter inquebrantable basado en cumplir incondicionalmente la promesa que te hiciste a ti mismo." }
+              ].map((reward, i) => (
+                <div key={i} className="bg-black/60 p-4 rounded-xl border border-zinc-900/70 text-left space-y-1.5 hover:border-emerald-500/20 transition-all">
+                  <span className="text-emerald-400 font-mono text-xs font-black uppercase tracking-wider block">{reward.title}</span>
+                  <span className="text-white font-display font-bold text-xs uppercase tracking-tight block">{reward.subtitle}</span>
+                  <p className="text-zinc-500 text-[11px] leading-relaxed font-sans">{reward.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
         </div>
@@ -1244,10 +1320,10 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
 
       {/* ==========================================================
           SECCIÓN 8: TESTIMONIOS
-          Objetivo: Mostrar 6 tarjetas premium bien preparadas
+          Objetivo: Mostrar testimoniales reales filtrables con estética ultra-premium y humana
           ========================================================== */}
       <section className="py-24 px-6 md:px-12 bg-black border-b border-zinc-900">
-        <div className="max-w-5xl mx-auto space-y-16">
+        <div className="max-w-5xl mx-auto space-y-12">
           
           <div className="text-center space-y-4">
             <span className="text-brand-orange font-mono text-xxs font-bold uppercase tracking-wider">COMUNIDAD IMPLACABLE</span>
@@ -1255,47 +1331,180 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
               RESULTADOS DE NUESTRA COMUNIDAD
             </h2>
             <p className="text-zinc-500 text-sm max-w-xl mx-auto">
-              Estudiantes e ingenieros reales que hackearon sus niveles de acción personal con la saga.
+              Descubra la experiencia real de profesionales y estudiantes que hackearon su procrastinación con la saga.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {TESTIMONIALS.map((test) => (
-              <div key={test.id} className="bg-zinc-950 rounded-2xl border border-zinc-900 p-6 space-y-4 hover:border-zinc-800 transition-all flex flex-col justify-between">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <img
-                        src={test.avatarUrl}
-                        alt={test.name}
-                        className="h-10 w-10 rounded-full object-cover border border-zinc-800"
-                        referrerPolicy="no-referrer"
-                      />
-                      <div>
-                        <h4 className="text-xs font-extrabold text-white font-display leading-tight">{test.name}</h4>
-                        <p className="text-[10px] text-zinc-500 font-mono">{test.role}</p>
-                      </div>
-                    </div>
-                    <span className="text-[9px] font-mono text-zinc-650">{test.date}</span>
-                  </div>
-
-                  <div className="flex text-orange-500 space-x-0.5">
-                    {Array.from({ length: test.rating }).map((_, i) => (
-                      <Star key={i} className="h-3.5 w-3.5 fill-current text-brand-orange" />
-                    ))}
-                  </div>
-
-                  <p className="text-xs text-zinc-300 leading-relaxed font-sans italic">
-                    "{test.content}"
-                  </p>
-                </div>
-
-                <div className="pt-3 border-t border-zinc-900 flex justify-between items-center text-[9px] font-mono uppercase text-zinc-500">
-                  <span>Volumen Utilizado:</span>
-                  <span className="text-brand-orange font-bold">{test.category}</span>
-                </div>
+          {/* Social Proof Trust Dashboard */}
+          <div className="bg-zinc-950/40 border border-zinc-900/80 rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-center gap-5 text-center sm:text-left max-w-4xl mx-auto backdrop-blur-sm shadow-xl">
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <div className="flex text-amber-500">
+                <Star className="h-4.5 w-4.5 fill-current text-brand-orange" />
+                <Star className="h-4.5 w-4.5 fill-current text-brand-orange" />
+                <Star className="h-4.5 w-4.5 fill-current text-brand-orange" />
+                <Star className="h-4.5 w-4.5 fill-current text-brand-orange" />
+                <Star className="h-4.5 w-4.5 fill-current text-brand-orange" />
               </div>
-            ))}
+              <div>
+                <div className="text-white text-xs font-black tracking-wide font-display uppercase">4.9 / 5 Calificación Promedio</div>
+                <div className="text-[10px] text-zinc-500 font-mono uppercase">Rebotes auditados e importados de Hotmart Marketplace</div>
+              </div>
+            </div>
+            
+            <div className="hidden sm:block h-8 w-px bg-zinc-800" />
+            
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-1 text-xs font-mono">
+              <div className="text-center sm:text-left">
+                <span className="text-zinc-500 block text-[9px] uppercase">Garantía</span>
+                <span className="text-emerald-400 font-bold">7 DÍAS TOTAL</span>
+              </div>
+              <div className="text-center sm:text-left">
+                <span className="text-zinc-500 block text-[9px] uppercase">Lectores Activos</span>
+                <span className="text-white font-bold">1,240+ HOY</span>
+              </div>
+              <div className="text-center sm:text-left">
+                <span className="text-zinc-500 block text-[9px] uppercase">Fuente</span>
+                <span className="text-brand-orange font-bold">ALUMNOS REALES</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Filter Chips */}
+          <div className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto pt-2">
+            {[
+              { id: "todos", label: "Todos los comentarios", count: TESTIMONIALS.length },
+              { id: "mindset", label: "Tomo I", count: TESTIMONIALS.filter(t => t.category === "mindset").length },
+              { id: "habits", label: "Tomo II", count: TESTIMONIALS.filter(t => t.category === "habits").length },
+              { id: "discipline", label: "Tomo III", count: TESTIMONIALS.filter(t => t.category === "discipline").length },
+              { id: "practico", label: "Casos & TDAH", count: TESTIMONIALS.filter(t => t.category === "productivity" || t.category === "general").length }
+            ].map((chip) => {
+              const active = filtroTestimonio === chip.id;
+              return (
+                <button
+                  key={chip.id}
+                  onClick={() => setFiltroTestimonio(chip.id)}
+                  className={`px-3 py-1.5 rounded-xl text-xxs font-bold transition-all duration-300 border flex items-center gap-1.5 cursor-pointer ${
+                    active 
+                      ? "bg-brand-orange text-black border-brand-orange font-mono shadow-[0_0_15px_rgba(235,94,40,0.15)] font-black" 
+                      : "bg-zinc-950/60 text-zinc-400 border-zinc-900 hover:border-zinc-800 hover:text-white"
+                  }`}
+                >
+                  <span>{chip.label}</span>
+                  <span className={`px-1.5 py-0.5 text-[8px] rounded-full font-mono ${
+                    active ? "bg-black/20 text-black font-extrabold" : "bg-zinc-900 text-zinc-550"
+                  }`}>
+                    {chip.count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Testimonial Cards Layout (Filtered with dynamic visual layout) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+            <AnimatePresence mode="popLayout">
+              {TESTIMONIALS.filter((test) => {
+                if (filtroTestimonio === "todos") return true;
+                if (filtroTestimonio === "practico") return test.category === "productivity" || test.category === "general";
+                return test.category === filtroTestimonio;
+              }).map((test) => {
+                // Get human-friendly category label and layout styling
+                let catLabel = "Saga Fundamental";
+                let catColor = "text-zinc-500 border-zinc-900/60 bg-zinc-900/10";
+                if (test.category === "mindset") {
+                  catLabel = "Tomo I: Mentalidad";
+                  catColor = "text-sky-400 border-sky-500/10 bg-sky-500/5";
+                } else if (test.category === "habits") {
+                  catLabel = "Tomo II: Hábitos";
+                  catColor = "text-emerald-400 border-emerald-500/10 bg-emerald-500/5";
+                } else if (test.category === "discipline") {
+                  catLabel = "Tomo III: Disciplina";
+                  catColor = "text-rose-400 border-rose-500/10 bg-rose-500/5";
+                } else if (test.category === "productivity") {
+                  catLabel = "Eficiencia Dopamínica";
+                  catColor = "text-amber-400 border-amber-500/10 bg-amber-500/5";
+                } else if (test.category === "general") {
+                  catLabel = "Implementación Total";
+                  catColor = "text-violet-400 border-violet-500/10 bg-violet-500/5";
+                }
+
+                return (
+                  <motion.div
+                    layout
+                    initial={{ opacity: 0, scale: 0.98, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{ duration: 0.3 }}
+                    key={test.id}
+                    className="bg-zinc-950/70 rounded-2xl border border-zinc-900 p-6 flex flex-col justify-between hover:border-zinc-800/80 hover:bg-zinc-950 transition-all duration-300 min-h-[310px] relative overflow-hidden group shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
+                  >
+                    {/* Watermark quote symbol */}
+                    <span className="absolute -top-3 -right-2 text-[100px] font-serif text-zinc-900/10 select-none pointer-events-none group-hover:text-zinc-900/15 transition-colors">
+                      “
+                    </span>
+
+                    <div className="space-y-4 relative z-10">
+                      {/* Card Header Info */}
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="flex items-center space-x-3">
+                          <img
+                            src={test.avatarUrl}
+                            alt={test.name}
+                            className="h-10 w-10 rounded-full object-cover border-2 border-zinc-900 shadow-md group-hover:border-zinc-800 transition-colors"
+                            referrerPolicy="no-referrer"
+                          />
+                          <div>
+                            <div className="flex items-center gap-1">
+                              <h4 className="text-xs font-extrabold text-white font-display leading-none">{test.name}</h4>
+                              {test.verified && (
+                                <span title="Compra Verificada" className="text-[9px] text-emerald-400 bg-emerald-500/10 rounded-full inline-flex items-center justify-center h-3.5 w-3.5 font-bold leading-none select-none">
+                                  ✓
+                                </span>
+                              )}
+                            </div>
+                            <p className="text-[10px] text-zinc-500 font-mono leading-tight">{test.role}</p>
+                            
+                            {/* Location & Status Badges */}
+                            <div className="flex items-center gap-1.5 mt-1">
+                              {test.location && (
+                                <span className="inline-flex items-center gap-0.5 text-zinc-500 text-[8px] font-mono whitespace-nowrap">
+                                  <MapPin className="h-2 w-2 text-zinc-650" />
+                                  {test.location}
+                                </span>
+                              )}
+                              <span className="inline-flex items-center px-1 py-0.5 text-[7px] font-mono font-bold tracking-wider bg-emerald-500/10 text-emerald-400 rounded border border-emerald-500/10 uppercase select-none">
+                                Alumno Verificado
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <span className="text-[8px] font-mono text-zinc-650 whitespace-nowrap bg-zinc-900/30 px-1.5 py-0.5 rounded select-none">{test.date}</span>
+                      </div>
+
+                      {/* Score stars */}
+                      <div className="flex text-orange-500 space-x-0.5">
+                        {Array.from({ length: test.rating }).map((_, i) => (
+                          <Star key={i} className="h-3 w-3 fill-current text-brand-orange" />
+                        ))}
+                      </div>
+
+                      {/* Content excerpt with natural pacing */}
+                      <p className="text-xs text-zinc-300 leading-relaxed font-sans font-light">
+                        "{test.content}"
+                      </p>
+                    </div>
+
+                    {/* Footer specifying study material */}
+                    <div className="pt-3.5 mt-4 border-t border-zinc-900 flex items-center justify-between text-[9px] font-mono uppercase relative z-10 select-none">
+                      <span className="text-zinc-550">VOLUMEN CLAVE:</span>
+                      <span className={`px-2 py-0.5 font-bold rounded-lg border ${catColor}`}>
+                        {catLabel}
+                      </span>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
           </div>
 
         </div>

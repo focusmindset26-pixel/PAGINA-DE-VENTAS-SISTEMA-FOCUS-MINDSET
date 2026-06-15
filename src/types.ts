@@ -7,6 +7,8 @@ export interface Testimonial {
   content: string;
   category: "mindset" | "habits" | "discipline" | "productivity" | "general";
   date: string;
+  location?: string;
+  verified?: boolean;
 }
 
 export interface FAQ {

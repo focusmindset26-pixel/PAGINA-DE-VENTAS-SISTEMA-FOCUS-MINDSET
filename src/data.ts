@@ -7,9 +7,11 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "Emprendedor SaaS",
     avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
     rating: 5,
-    content: "Llevaba meses procrastinando mis metas financieras debido a la fatiga mental. Con la trilogía Focus Mindset logré ordenar mi cabeza, mis hábitos y, lo más importante, mi identidad. El cambio que experimentas es a nivel raíz. He duplicado mi capacidad de trabajo sin agotarme.",
+    content: "Sinceramente, compré esto con bastante escepticismo, pensando que sería otro refrito motivacional de Instagram. Pero el enfoque de identidad en el Tomo 1 me dio un baño de realidad tremendo. No te da palmaditas en la espalda; te dice la verdad sin rodeos. Llevo 3 semanas aplicando las técnicas de fricción ambiental y por fin logré lanzar la primera versión de mi software sin distraerme cada 5 minutos en redes. Vale cada centavo.",
     category: "mindset",
-    date: "Hace 2 semanas"
+    date: "Hace 2 semanas",
+    location: "Bogotá, Colombia",
+    verified: true
   },
   {
     id: "2",
@@ -17,9 +19,11 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "Diseñadora Freelance",
     avatarUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
     rating: 5,
-    content: "Lo que más me sirvió fue el enfoque en el dominio de los hábitos. He reestructurado mi día eliminando las notificaciones y los disparadores de dopamina barata. Mi concentración es profunda; ya no dependo de tener ganas para ponerme a producir.",
+    content: "Como freelancer, perder el control de mis horarios era mi pan de cada día. Procrastinaba hasta la noche y vivía estresada. El sistema de hábitat sin fricción que enseñan en el Tomo 2 cambió por completo mi set-up de trabajo. Ahora mi teléfono va a una caja fuera del cuarto durante mis bloques de diseño. Mi nivel de concentración es profundo; recuperé mis fines de semana y mi salud mental.",
     category: "habits",
-    date: "Hace 1 mes"
+    date: "Hace 1 mes",
+    location: "Madrid, España",
+    verified: true
   },
   {
     id: "3",
@@ -27,9 +31,11 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "Estudiante de Ingeniería",
     avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
     rating: 5,
-    content: "Como estudiante, dependía enteramente de la motivación. Si no estaba 'inspirado', no estudiaba. Focus Mindset me enseñó la fría realidad: la motivación es una mentira comercial. Ahora simplemente ejecuto por pura disciplina y compromiso con mi palabra.",
+    content: "Como estudiante de sistemas, mi mayor problema era que si no estaba con 'ánimo', simplemente no abría los apuntes. En Focus Mindset aprendí que la motivación para la disciplina diaria es puro humo comercial. Ahora aplico la disociación reactiva y ejecuto mecánicamente, tenga ganas o no. He aprobado mis exámenes más difíciles sin las típicas desveladas de última hora. Es brutal.",
     category: "discipline",
-    date: "Hace 3 semanas"
+    date: "Hace 3 semanas",
+    location: "Monterrey, México",
+    verified: true
   },
   {
     id: "4",
@@ -37,19 +43,23 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "Creador de Contenido & Editor",
     avatarUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80",
     rating: 5,
-    content: "La ingeniería de dopamina que explican en el tomo de hábitos fue reveladora. Me permitió apagar el teléfono por bloques de 4 horas diarias y triplicar mi ritmo de producción. Es absurda la cantidad de distracciones que toleramos. Este manual las aniquila.",
+    content: "Uf, el capítulo de ingeniería de dopamina limpia me voló la cabeza. Es increíble cómo protegemos y justificamos nuestras distracciones cotidianas. Apliqué el ayuno medático de las mañanas y mis tiempos de edición de video se redujeron a la mitad. Menos fatiga frente a la pantalla y más rentabilidad para mis clientes. Es de esas pocas compras que se pagan solas en la primera semana.",
     category: "productivity",
-    date: "Hace 5 días"
+    date: "Hace 5 días",
+    location: "Santiago, Chile",
+    verified: true
   },
   {
     id: "5",
     name: "Valeria G.",
-    role: "Desarrolladora Senior",
+    role: "Desarrolladora Front-End",
     avatarUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
     rating: 5,
-    content: "Como programadora, mi mente solía entrar en parálisis por análisis. Los sistemas sencillos de Focus Mindset me dieron un marco de acción agresivo. Si mi mente pide posponer, mi cuerpo ya está ejecutando. Altamente recomendado si necesitas consistencia extrema.",
+    content: "Tengo déficit de atención y suelo caer en parálisis por análisis ante proyectos grandes. El sistema práctico de hábitos atómicos me dio la estructura que ningún terapeuta logró transmitirme de forma tan simple. Empezar las mañanas con la ducha de choque del reto de los 30 días suena tonto, pero resetea mi enfoque y me pone en modo acción inmediata. Totalmente recomendado si necesitas consistencia extrema.",
     category: "general",
-    date: "Hace 10 días"
+    date: "Hace 10 días",
+    location: "Lima, Perú",
+    verified: true
   },
   {
     id: "6",
@@ -57,9 +67,11 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "Inversionista & Trader",
     avatarUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80",
     rating: 5,
-    content: "El estoicismo llevado a la práctica sin tonterías místicas. Salí de la procrastinación analítica gracias al método de disciplina militar. Comprendes que tu palabra es el único activo real que tienes en esta vida. Gran inversión.",
+    content: "En trading la falta de auto-control es sinónimo de perder miles de dólares. Estoicismo práctico llevado a la acción real sin filosofías baratas de taza de café. El concepto del 'Pacto de Hierro Personal' no da espacio a excusas. Cumplir con tu palabra se vuelve tu ley principal. Si eres un profesional que trabaja bajo altos niveles de presión mental, esta trilogía es una lectura obligatoria.",
     category: "discipline",
-    date: "Hace 1 mes"
+    date: "Hace 1 mes",
+    location: "Buenos Aires, Argentina",
+    verified: true
   }
 ];
 
