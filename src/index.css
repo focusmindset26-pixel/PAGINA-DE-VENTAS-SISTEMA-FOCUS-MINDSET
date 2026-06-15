@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-brand-orange: #FF5A00;
+  --color-brand-orange-dark: #cc4800;
+  --color-brand-black: #000000;
+  --color-brand-gray-steel: #A9A9A9;
+  --color-brand-dark-gray: #121212;
+  --color-brand-darker-gray: #0a0a0a;
+}
+
+/* Custom styles for high-end cinematic experience */
+::selection {
+  background-color: #FF5A00;
+  color: #000000;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: #222222;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF5A00;
+}
+
+/* Pulse glow animations */
+@keyframes softGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(255, 90, 0, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 90, 0, 0.4);
+  }
+}
+
+.glow-orange-subtle {
+  transition: all 0.3s ease;
+}
+
+.glow-orange-subtle:hover {
+  box-shadow: 0 0 25px rgba(255, 90, 0, 0.25);
+  border-color: rgba(255, 90, 0, 0.4);
+}
+
+.glow-orange {
+  animation: softGlow 4s infinite ease-in-out;
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(circle at center, rgba(255, 90, 0, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+.bg-radial-glow-top {
+  background: radial-gradient(ellipse at top, rgba(255, 90, 0, 0.12) 0%, rgba(0, 0, 0, 0) 60%);
+}
+
+.bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacitiy='0.05'/%3E%3C/svg%3E");
+}

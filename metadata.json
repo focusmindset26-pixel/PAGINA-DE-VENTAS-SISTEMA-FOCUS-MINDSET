@@ -1,0 +1,6 @@
+{
+  "name": "Landing Page Focus Mindset",
+  "description": "Direct response, ultra-premium landing page for the Focus Mindset Trilogy: Mentalidad, Hábitos, and Disciplina.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
