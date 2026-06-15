@@ -276,19 +276,29 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
           </div>
 
           {/* Epic Professional Trilogy Mockup Image */}
-          <div className="pt-10">
-            <div className="relative rounded-3xl border border-zinc-900 bg-zinc-950 p-2.5 shadow-[0_20px_60px_rgba(0,0,0,0.8)] max-w-3xl mx-auto overflow-hidden group">
+          <div className="pt-10 relative">
+            {/* Ambient gold glow behind the mockup to highlight the premium status */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-gradient-to-r from-brand-orange/15 to-amber-500/10 rounded-full blur-[100px] opacity-70 pointer-events-none" />
+            
+            <div className="relative rounded-3xl border-2 border-zinc-800 bg-zinc-950 p-3 shadow-[0_25px_80px_rgba(0,0,0,0.95),0_0_45px_rgba(249,115,22,0.15)] max-w-3xl mx-auto overflow-hidden group hover:border-brand-orange/40 transition-all duration-500 z-10">
+              {/* Premium glassy highlight sweep */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none z-20" />
               <div className="absolute inset-0 bg-gradient-to-b from-orange-500/5 via-transparent to-transparent pointer-events-none" />
-              <img
-                src="https://i.imgur.com/LMBjCiw.png"
-                alt="Focus Mindset Trilogy Mockup"
-                className="w-full h-auto object-cover rounded-2xl group-hover:scale-[1.01] transition-transform duration-700"
-                referrerPolicy="no-referrer"
-              />
+              
+              <div className="overflow-hidden rounded-2xl relative bg-zinc-900/40">
+                <img
+                  src="https://i.imgur.com/LMBjCiw.png"
+                  alt="Focus Mindset Trilogy Mockup"
+                  className="w-full h-auto object-cover rounded-2xl scale-[1.005] group-hover:scale-[1.03] transition-transform duration-700 ease-out contrast-[1.05] brightness-[1.05] saturate-[1.08]"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+
               {/* Sticker price highlight */}
-              <div className="absolute top-5 right-5 bg-black/95 border border-brand-orange text-white py-3 px-4 rounded-2xl shadow-2xl font-mono text-center">
-                <span className="block text-zinc-600 line-through text-[10px]">VALOR: $84 USD</span>
-                <span className="text-brand-orange font-bold text-lg font-display">HOY: $9.99 USD</span>
+              <div className="absolute top-6 right-6 bg-black/95 border-2 border-brand-orange text-white py-3 px-5 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] font-mono text-center z-10 scale-100 group-hover:scale-[1.04] transition-transform duration-500">
+                <span className="block text-zinc-600 line-through text-[9px] uppercase tracking-wider font-bold">VALOR GLOBAL: $84 USD</span>
+                <span className="text-brand-orange font-black text-xl font-display tracking-tight">HOY: $9.99 USD</span>
+                <span className="block text-[8px] text-emerald-400 font-bold uppercase mt-1 tracking-widest animate-pulse">¡SISTEMA COMPLETO!</span>
               </div>
             </div>
           </div>
@@ -595,18 +605,26 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             
             {/* Libro 1 - MENTALIDAD */}
-            <div className="bg-zinc-950 rounded-2xl border border-zinc-900 p-6 flex flex-col justify-between hover:border-brand-orange/30 transition-all duration-300">
+            <div className="bg-gradient-to-b from-zinc-950 to-black rounded-3xl border border-zinc-900 p-6 flex flex-col justify-between hover:border-brand-orange/40 transition-all duration-500 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(249,115,22,0.08)] group/card relative overflow-hidden">
+              {/* Ambient top gold rim line on hover */}
+              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-orange/0 to-transparent group-hover/card:via-brand-orange/40 transition-all duration-700" />
+              
               <div>
-                <div className="aspect-[3/4] w-full rounded-xl overflow-hidden border border-zinc-900 bg-zinc-900 relative shadow-xl mb-6">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
+                <div className="aspect-[3/4] w-full rounded-2xl overflow-hidden border border-zinc-850 bg-zinc-950 relative shadow-2xl mb-6 group/img">
+                  {/* Realistic paper book shadow edge detail */}
+                  <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-r from-black/60 via-black/10 to-transparent z-20" />
+                  {/* Highlight sweep overlay reflex */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover/card:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none z-20" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent z-10 opacity-70 group-hover/card:opacity-45 transition-opacity duration-500" />
+                  
                   <img
                     src="https://i.imgur.com/RkPt9az.png"
                     alt="Libro 1 MENTALIDAD Cover"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-xl contrast-[1.05] brightness-[1.04] saturate-[1.05] transition-all duration-700 group-hover/card:scale-105"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute bottom-4 left-4 z-20">
-                    <span className="text-[9px] bg-brand-orange text-black font-mono font-bold uppercase px-2 py-0.5 rounded">VOLUMEN I</span>
+                    <span className="text-[9px] bg-brand-orange text-black font-mono font-black uppercase px-2.5 py-1 rounded-md shadow-md tracking-wider">VOLUMEN I</span>
                   </div>
                 </div>
 
@@ -688,18 +706,26 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
             </div>
 
             {/* Libro 2 - HÁBITOS */}
-            <div className="bg-zinc-950 rounded-2xl border border-zinc-900 p-6 flex flex-col justify-between hover:border-brand-orange/30 transition-all duration-300">
+            <div className="bg-gradient-to-b from-zinc-950 to-black rounded-3xl border border-zinc-900 p-6 flex flex-col justify-between hover:border-brand-orange/40 transition-all duration-500 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(249,115,22,0.08)] group/card relative overflow-hidden">
+              {/* Ambient top gold rim line on hover */}
+              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-orange/0 to-transparent group-hover/card:via-brand-orange/40 transition-all duration-700" />
+              
               <div>
-                <div className="aspect-[3/4] w-full rounded-xl overflow-hidden border border-zinc-900 bg-zinc-900 relative shadow-xl mb-6">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
+                <div className="aspect-[3/4] w-full rounded-2xl overflow-hidden border border-zinc-850 bg-zinc-955 relative shadow-2xl mb-6 group/img">
+                  {/* Realistic paper book shadow edge detail */}
+                  <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-r from-black/60 via-black/10 to-transparent z-20" />
+                  {/* Highlight sweep overlay reflex */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover/card:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none z-20" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent z-10 opacity-70 group-hover/card:opacity-45 transition-opacity duration-500" />
+                  
                   <img
                     src="https://i.imgur.com/VKwisSL.png"
                     alt="Libro 2 HÁBITOS Cover"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-xl contrast-[1.05] brightness-[1.04] saturate-[1.05] transition-all duration-700 group-hover/card:scale-105"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute bottom-4 left-4 z-20">
-                    <span className="text-[9px] bg-brand-orange text-black font-mono font-bold uppercase px-2 py-0.5 rounded">VOLUMEN II</span>
+                    <span className="text-[9px] bg-brand-orange text-black font-mono font-black uppercase px-2.5 py-1 rounded-md shadow-md tracking-wider">VOLUMEN II</span>
                   </div>
                 </div>
 
@@ -784,18 +810,26 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
             </div>
 
             {/* Libro 3 - DISCIPLINA */}
-            <div className="bg-zinc-950 rounded-2xl border border-zinc-900 p-6 flex flex-col justify-between hover:border-brand-orange/30 transition-all duration-300">
+            <div className="bg-gradient-to-b from-zinc-950 to-black rounded-3xl border border-zinc-900 p-6 flex flex-col justify-between hover:border-brand-orange/40 transition-all duration-500 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(249,115,22,0.08)] group/card relative overflow-hidden">
+              {/* Ambient top gold rim line on hover */}
+              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-orange/0 to-transparent group-hover/card:via-brand-orange/40 transition-all duration-700" />
+              
               <div>
-                <div className="aspect-[3/4] w-full rounded-xl overflow-hidden border border-zinc-900 bg-zinc-900 relative shadow-xl mb-6">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
+                <div className="aspect-[3/4] w-full rounded-2xl overflow-hidden border border-zinc-850 bg-zinc-955 relative shadow-2xl mb-6 group/img">
+                  {/* Realistic paper book shadow edge detail */}
+                  <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-r from-black/60 via-black/10 to-transparent z-20" />
+                  {/* Highlight sweep overlay reflex */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover/card:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none z-20" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent z-10 opacity-70 group-hover/card:opacity-45 transition-opacity duration-500" />
+                  
                   <img
                     src="https://i.imgur.com/L8lqbYG.png"
                     alt="Libro 3 DISCIPLINA Cover"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-xl contrast-[1.05] brightness-[1.04] saturate-[1.05] transition-all duration-700 group-hover/card:scale-105"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute bottom-4 left-4 z-20">
-                    <span className="text-[9px] bg-brand-orange text-black font-mono font-bold uppercase px-2 py-0.5 rounded">VOLUMEN III</span>
+                    <span className="text-[9px] bg-brand-orange text-black font-mono font-black uppercase px-2.5 py-1 rounded-md shadow-md tracking-wider">VOLUMEN III</span>
                   </div>
                 </div>
 
