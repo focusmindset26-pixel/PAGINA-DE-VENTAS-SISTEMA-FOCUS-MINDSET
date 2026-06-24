@@ -254,25 +254,39 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
           </div>
 
           {/* Epic Main Headline */}
-          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-normal max-w-5xl mx-auto uppercase">
-            SI LLEVAS AÑOS INTENTANDO CAMBIAR TU VIDA Y <span className="text-brand-orange underline decoration-orange-500/30">SIEMPRE TERMINAS VOLVIENDO</span> AL MISMO LUGAR, ESTE SISTEMA FUE CREADO PARA TI.
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-none max-w-5xl mx-auto uppercase">
+            ¿OTRA VEZ EN EL PUNTO CERO? <br className="hidden md:block"/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange via-amber-500 to-yellow-500">
+              DEJA LA MOTIVACIÓN, CONSTRUYE UN SISTEMA.
+            </span>
           </h1>
 
           {/* Subheadline copy */}
-          <p className="text-zinc-400 text-base md:text-xl max-w-3xl mx-auto leading-relaxed font-sans">
-            Desarrolla la mentalidad, los hábitos y la disciplina que necesitas para convertirte en alguien que ejecuta de manera implacable, incluso cuando no tiene ganas.
+          <p className="text-zinc-350 text-base md:text-xl max-w-4xl mx-auto leading-relaxed font-sans">
+            La trilogía <strong className="text-white font-bold">"Sistema Focus Mindset"</strong> es la reingeniería definitiva de tus hábitos y disciplina para que ejecutes con frialdad matemática, incluso cuando no tengas ganas de levantarte de la cama.
+          </p>
+
+          {/* Support text generating curiosity and urgency */}
+          <p className="text-zinc-500 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed italic">
+            No es autoayuda barata ni positivismo vacío. Es un manual técnico de ejecución física y mental creado para hombres decididos a erradicar la inconsistencia para siempre por solo $9.99 USD.
           </p>
 
           {/* Massive Orange Primary CTA */}
-          <div className="flex flex-col items-center space-y-5 pt-2">
+          <div className="flex flex-col items-center space-y-4 pt-2">
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={handleScrollToCheckoutAction}
               className="w-full sm:w-auto bg-brand-orange hover:bg-orange-600 text-black px-10 py-5 rounded-xl font-display font-black tracking-widest text-sm uppercase transition-all shadow-[0_10px_40px_rgba(249,115,22,0.3)] hover:shadow-[0_15px_50px_rgba(249,115,22,0.55)] cursor-pointer"
             >
-              QUIERO CONVERTIRME EN MI MEJOR VERSIÓN
+              SÍ, QUIERO CONSTRUIR MI SISTEMA DE EJECUCIÓN
             </motion.button>
+            
+            {/* Microtext to eliminate fear */}
+            <div className="flex items-center justify-center gap-1.5 text-zinc-500 text-[10px] sm:text-xs font-mono uppercase tracking-wider">
+              <Shield className="h-4 w-4 text-emerald-400" />
+              <span>PAGO ÚNICO DE $9.99 USD • DESCARGA INMEDIATA • GARANTÍA INCONDICIONAL DE 7 DÍAS</span>
+            </div>
           </div>
 
           {/* Epic Professional Trilogy Mockup Image */}
@@ -300,6 +314,101 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
                 <span className="text-brand-orange font-black text-xl font-display tracking-tight">HOY: $9.99 USD</span>
                 <span className="block text-[8px] text-emerald-400 font-bold uppercase mt-1 tracking-widest animate-pulse">¡SISTEMA COMPLETO!</span>
               </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ==========================================================
+          SECCIÓN 2: AGITACIÓN DE DOLOR (ESPEJO FRÍO DE LA INCONSISTENCIA)
+          Objetivo: Que el lector se sientan plenamente identificado y entienda el costo real de su situación
+          ========================================================== */}
+      <section className="py-24 px-6 md:px-12 bg-black border-b border-zinc-900 relative overflow-hidden">
+        {/* Soft, ominous radial glow behind */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-red-950/5 rounded-full blur-[140px] pointer-events-none" />
+        
+        <div className="max-w-5xl mx-auto space-y-16 relative z-10">
+          
+          <div className="text-center space-y-5">
+            <span className="text-red-500 font-mono text-xs font-black tracking-widest bg-red-500/10 px-3 py-1 rounded-md border border-red-500/25 inline-block">ESPEJO DE REALIDAD</span>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tight leading-none">
+              SABES EXACTAMENTE LO QUE TIENES QUE HACER. <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-amber-500 to-zinc-400">
+                ¿POR QUÉ SIGUES EN EL MISMO LUGAR?
+              </span>
+            </h2>
+            <p className="text-zinc-500 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed">
+              Mírate al espejo con total honestidad. Si te quitas las excusas cotidianas que le cuentas al resto del mundo, la realidad se reduce a una sola verdad incómoda.
+            </p>
+          </div>
+
+          {/* Grid of the 6 core progressive symptoms */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                id: "01",
+                title: "El ritual del scroll infinito al despertar",
+                desc: "Te despiertas con la firme intención de hacer que hoy cuente. Pero tu mano va directamente al teléfono de manera mecánica. Consumes 45 minutos de dopamina barata antes de poner un pie en el suelo, y tu atención ya comienza el día totalmente secuestrada."
+              },
+              {
+                id: "02",
+                title: "El cementerio de proyectos a medias",
+                desc: "Tienes carpetas llenas de ideas que iban a revolucionar tu vida, cursos comprados al 10% de avance y agendas impecables que solo tienen las primeras tres páginas escritas. Eres un experto absoluto en iniciar, pero un completo desconocido en terminar."
+              },
+              {
+                id: "03",
+                title: "El debate mental que te agota antes de actuar",
+                desc: "Pasas hasta 2 horas en una negociación interna desgastante sobre si deberías estudiar, trabajar en tu negocio o ir al gimnasio. Cuando finalmente te decides a arrancar, estás tan exhausto de debatir contigo mismo que ya no tienes energía real para ejecutar."
+              },
+              {
+                id: "04",
+                title: "La fantasía reconfortante del \"mañana sí\"",
+                desc: "Te convences de que el lunes, o el próximo mes, o cuando 'tengas más tiempo' empezarás de verdad. Sientes un alivio ficticio que químicamente es idéntico al logro real... pero que se destruye por completo en cuanto suena la primera alarma de la semana."
+              },
+              {
+                id: "05",
+                title: "La bofetada silenciosa de ver a otros avanzar",
+                desc: "Observas a personas con la mitad de tu talento, menos ideas y capacidades inferiores lograr el éxito que tú mereces. La diferencia no está en su inteligencia; está en que ellos ejecutan de forma aburrida, fría y predecible, mientras tú sigues esperando 'sentirte listo'."
+              },
+              {
+                id: "06",
+                title: "La traición definitiva: Ya no confías en tu palabra",
+                desc: "Este es el dolor más profundo y destructivo. Cuando te dices 'mañana voy a levantarme a las 6' o 'esta semana completaré esta tarea', una voz silenciosa dentro de ti se burla. Te has acostumbrado tanto a romper tus propias promesas que has perdido el respeto por ti mismo."
+              }
+            ].map((symptom) => (
+              <div 
+                key={symptom.id} 
+                className="bg-zinc-950/75 border border-zinc-900 rounded-2xl p-6 hover:border-red-500/25 transition-all duration-300 text-left flex flex-col justify-between group"
+              >
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[10px] font-mono font-black text-red-500 bg-red-500/10 px-2 py-0.5 rounded border border-red-500/20">
+                      SÍNTOMA {symptom.id}
+                    </span>
+                    <AlertTriangle className="h-4 w-4 text-red-500/40 group-hover:text-red-500 transition-colors" />
+                  </div>
+                  <h3 className="font-display font-black text-white text-sm sm:text-base uppercase tracking-tight leading-snug">
+                    {symptom.title}
+                  </h3>
+                  <p className="text-zinc-500 text-xs leading-relaxed font-sans group-hover:text-zinc-400 transition-colors">
+                    {symptom.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Validation & Re-framing Closing Block */}
+          <div className="bg-gradient-to-r from-zinc-950 via-zinc-900/40 to-zinc-950 border border-zinc-900 rounded-3xl p-6 sm:p-8 text-center relative overflow-hidden max-w-4xl mx-auto">
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-500/25 to-transparent" />
+            <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-500/25 to-transparent" />
+            
+            <div className="space-y-4">
+              <span className="text-zinc-400 font-mono text-[10px] uppercase tracking-widest font-bold block">ENTIENDE ESTO DE UNA VEZ POR TODAS:</span>
+              <p className="text-zinc-300 text-sm sm:text-base leading-relaxed font-sans max-w-3xl mx-auto">
+                No eres flojo, ni incapaz, ni te falta inteligencia. Tu único error ha sido intentar operar bajo un <strong className="text-white font-black">modelo biológicamente insostenible</strong>: depender de cómo te sientes para poder actuar. Es hora de dejar de luchar contra tu propio cerebro y empezar a gobernarlo con un sistema frío y predecible.
+              </p>
             </div>
           </div>
 
@@ -561,8 +670,8 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
             </div>
           </div>
 
-          {/* Realization Title */}
-          <div className="text-center pt-8 space-y-8">
+          {/* Realization Transition Arrow */}
+          <div className="text-center pt-8">
             <motion.div 
               animate={{ y: [0, 8, 0] }}
               transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
@@ -570,16 +679,105 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
             >
               ↓
             </motion.div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ==========================================================
+          SECCIÓN 4: REENCUADRE COGNITIVO (EL PUNTO DE QUIEBRE)
+          Objetivo: Que el lector deje de culparse, entienda la lógica científica/biológica y desee el sistema.
+          ========================================================== */}
+      <section id="reencuadre-cognitivo" className="py-28 px-6 md:px-12 bg-black border-b border-zinc-900 relative overflow-hidden">
+        {/* Premium technical dot grid background */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(249,115,22,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(249,115,22,0.015)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_60%,transparent_100%)] pointer-events-none" />
+        
+        {/* Soft elegant orange spotlight */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-brand-orange/5 rounded-full blur-[140px] pointer-events-none" />
+        
+        <div className="max-w-4xl mx-auto space-y-12 relative z-10 text-center">
+          
+          <div className="space-y-4">
+            <span className="text-brand-orange font-mono text-xs font-black tracking-widest bg-brand-orange/10 px-3 py-1 rounded-md border border-brand-orange/25 inline-block uppercase">
+              EL PUNTO DE QUIEBRE EN TU PRODUCTIVIDAD
+            </span>
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight leading-none">
+              LA FUERZA DE VOLUNTAD ES UN MITO BIOLÓGICO. <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-yellow-500">
+                EL PROBLEMA NUNCA FUE TU CARÁCTER.
+              </span>
+            </h2>
+          </div>
+
+          {/* Premium tactical-glassmorphic text container */}
+          <div className="bg-gradient-to-br from-zinc-950 to-zinc-900 border border-zinc-800/80 rounded-3xl p-8 sm:p-12 shadow-[0_25px_60px_rgba(0,0,0,0.95)] max-w-3xl mx-auto space-y-8 relative group hover:border-brand-orange/40 transition-all duration-500">
             
-            <div className="space-y-4 max-w-3xl mx-auto px-4">
-              <h3 className="font-display font-black text-xl sm:text-2xl lg:text-3xl tracking-tight text-white uppercase leading-tight">
-                EL PROBLEMA NO ES TU FUERZA DE VOLUNTAD.
-              </h3>
-              <p className="font-display font-black text-brand-orange text-xl sm:text-2xl lg:text-3xl tracking-tight uppercase leading-tight">
-                ES QUE NUNCA TE ENSEÑARON A CONSTRUIR UN SISTEMA.
-              </p>
+            {/* High-end Tactical Orange Corner Accents */}
+            <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-brand-orange/60 rounded-tl-3xl pointer-events-none group-hover:border-brand-orange transition-colors duration-500" />
+            <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-brand-orange/60 rounded-tr-3xl pointer-events-none group-hover:border-brand-orange transition-colors duration-500" />
+            <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-brand-orange/60 rounded-bl-3xl pointer-events-none group-hover:border-brand-orange transition-colors duration-500" />
+            <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-brand-orange/60 rounded-br-3xl pointer-events-none group-hover:border-brand-orange transition-colors duration-500" />
+
+
+
+            <p className="text-zinc-200 text-sm sm:text-base md:text-lg leading-relaxed font-sans text-left relative z-10 pt-2">
+              Tu cerebro está evolutivamente programado para ahorrar energía y buscar gratificación inmediata, no para sostener metas de largo plazo bajo emociones fluctuantes. Tratar de cambiar tu vida confiando en "cómo te sientes" cada mañana es como intentar cruzar el océano en un barco de papel. La inconsistencia que arrastras no es una falla de tu identidad ni una falta de coraje; es la consecuencia matemática exacta de operar sin reglas de ejecución predecibles.
+            </p>
+
+            {/* Scientific Breakdown: Mito vs Realidad */}
+            <div className="border-t border-b border-zinc-900/90 py-8 my-4 grid grid-cols-1 md:grid-cols-2 gap-6 text-left relative z-10">
+              
+              {/* Mito Container */}
+              <div className="space-y-3 bg-zinc-950/60 p-6 rounded-2xl border-l-4 border-rose-500/80 border-t border-r border-b border-zinc-900/80 shadow-md hover:bg-zinc-900/20 transition-all">
+                <span className="text-[10px] font-mono text-rose-400 font-bold uppercase tracking-widest block flex items-center gap-1.5">
+                  <span className="text-rose-500">✖</span> EL MITO POPULAR (LA CULPA)
+                </span>
+                <p className="text-xs text-zinc-400 font-sans leading-relaxed">
+                  "No tengo suficiente autodisciplina. Procrastino porque soy perezoso, no tengo carácter, o simplemente no quiero mis objetivos con suficiente fuerza."
+                </p>
+                <div className="pt-2 border-t border-zinc-900/50">
+                  <p className="text-xxs text-rose-400/80 italic font-mono uppercase tracking-wider">
+                    → Consecuencia: Culpa, frustración y abandono.
+                  </p>
+                </div>
+              </div>
+
+              {/* Realidad Container */}
+              <div className="space-y-3 bg-zinc-950/60 p-6 rounded-2xl border-l-4 border-emerald-500/80 border-t border-r border-b border-zinc-900/80 shadow-md hover:bg-brand-orange/[0.02] transition-all">
+                <span className="text-[10px] font-mono text-emerald-400 font-bold uppercase tracking-widest block flex items-center gap-1.5">
+                  <span className="text-emerald-500">✔</span> LA REALIDAD BIOLÓGICA (EL SISTEMA)
+                </span>
+                <p className="text-xs text-zinc-300 font-sans leading-relaxed">
+                  "Tu cerebro prefiere dopamina barata para preservar calorías. No puedes ganarle a la evolución con fuerza de voluntad; tienes que diseñar un hábitat que haga imposible fallar."
+                </p>
+                <div className="pt-2 border-t border-zinc-900/50">
+                  <p className="text-xxs text-emerald-400 font-mono uppercase tracking-wider">
+                    → Solución: Reglas de ejecución incondicional.
+                  </p>
+                </div>
+              </div>
+
             </div>
 
+            {/* Bottom Key Feature indicator with subtle orange line */}
+            <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
+              <div className="flex items-center gap-3.5 text-left">
+                <div className="h-11 w-11 rounded-xl bg-brand-orange/10 flex items-center justify-center border border-brand-orange/20 shrink-0 shadow-inner group-hover:bg-brand-orange/20 transition-all duration-300">
+                  <Key className="h-5 w-5 text-brand-orange" />
+                </div>
+                <div>
+                  <span className="text-[10px] text-zinc-500 font-mono block uppercase tracking-wider">LA CLAVE DE LA TRANSFORMACIÓN</span>
+                  <span className="text-xs sm:text-sm text-white font-bold uppercase tracking-wider font-display">EL CONTROL ESTÁ EN TU ARQUITECTURA, NO EN TU ESFUERZO</span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+
+          <div className="max-w-3xl mx-auto pt-4">
+            <p className="font-display font-black text-brand-orange text-lg sm:text-xl lg:text-2xl tracking-tight uppercase leading-snug">
+              Para romper el ciclo no necesitas más motivación barata de dos minutos; necesitas sustituir tus impulsos por un sistema de ejecución frío y predecible.
+            </p>
           </div>
 
         </div>
@@ -610,7 +808,7 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-orange/0 to-transparent group-hover/card:via-brand-orange/40 transition-all duration-700" />
               
               <div>
-                <div className="aspect-[3/4] w-full rounded-2xl overflow-hidden border border-zinc-850 bg-zinc-950 relative shadow-2xl mb-6 group/img">
+                <div className="aspect-[3/4] w-full rounded-2xl overflow-hidden border border-zinc-850 bg-zinc-955 relative shadow-2xl mb-6 group/img">
                   {/* Realistic paper book shadow edge detail */}
                   <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-r from-black/60 via-black/10 to-transparent z-20" />
                   {/* Highlight sweep overlay reflex */}
@@ -628,79 +826,34 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
                   </div>
                 </div>
 
-                <h3 className="font-display font-black text-white text-2xl tracking-wide">LIBRO 1: MENTALIDAD</h3>
-                <p className="text-zinc-500 text-[9px] font-mono uppercase tracking-widest mt-1 block leading-normal">
-                  Cómo construir una mente que ejecuta incluso cuando no tiene ganas
+                <h3 className="font-display font-black text-white text-xl uppercase tracking-wide">LIBRO 1 — MENTALIDAD</h3>
+                <p className="text-brand-orange text-xs font-mono uppercase tracking-wider mt-1 block leading-snug font-bold">
+                  La deconstrucción de la autolimitación y el fin de la dependencia de la motivación.
                 </p>
                 
-                <div className="space-y-4 mt-4 text-xs text-zinc-400 font-sans leading-relaxed">
-                  <p>
-                    La mayoría de las personas cree que sus resultados dependen de las circunstancias.
-                  </p>
-                  <p>
-                    La realidad es que todo comienza mucho antes. <strong className="text-white">Comienza en la mente.</strong>
-                  </p>
-                  <p>
-                    Este libro está diseñado para ayudarte a eliminar las creencias, excusas y patrones mentales que te mantienen atrapado en el mismo lugar año tras año.
-                  </p>
-                  <p>
-                    Aprenderás por qué la motivación es una de las herramientas más sobrevaloradas del desarrollo personal, cómo desarrollar responsabilidad absoluta sobre tu vida y cómo construir una identidad basada en la acción y la ejecución.
-                  </p>
-                </div>
-
-                {/* El dolor que ataca */}
-                <div className="pt-4 mt-4 border-t border-zinc-900 space-y-2">
-                  <span className="block text-[10px] font-mono text-rose-400/80 uppercase tracking-widest font-black">El dolor que ataca:</span>
-                  <div className="grid grid-cols-1 gap-1.5 pl-1.5">
-                    {[
-                      "Falta de confianza",
-                      "Victimismo",
-                      "Pensamientos limitantes",
-                      "Dependencia de la motivación",
-                      "Falta de dirección",
-                      "Falta de claridad"
-                    ].map((idx) => (
-                      <div key={idx} className="flex items-center space-x-2 text-xxs text-zinc-400">
-                        <span className="text-rose-500 font-mono">•</span>
-                        <span>{idx}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Lo que representa */}
-                <div className="pt-4 mt-4 border-t border-zinc-900 space-y-1">
-                  <span className="block text-[10px] font-mono text-zinc-500 uppercase tracking-widest font-black">Lo que representa:</span>
-                  <p className="text-zinc-300 text-xs font-medium">La reconstrucción de tu forma de pensar.</p>
-                </div>
-
-                {/* Lo que aprenderás */}
-                <div className="pt-4 mt-4 border-t border-zinc-900 space-y-2">
-                  <span className="block text-[10px] font-mono text-emerald-400/90 uppercase tracking-widest font-black">Lo que aprenderás:</span>
-                  <div className="space-y-1.5 pl-1">
-                    {[
-                      "Cómo piensan las personas disciplinadas",
-                      "Cómo desarrollar una mentalidad de ejecución",
-                      "Cómo asumir responsabilidad total",
-                      "Cómo fortalecer tu confianza personal",
-                      "Cómo construir una identidad poderosa"
-                    ].map((item) => (
-                      <div key={item} className="flex items-start space-x-2 text-xs text-zinc-300">
-                        <span className="text-emerald-400 shrink-0 select-none">✔</span>
-                        <span>{item}</span>
-                      </div>
-                    ))}
+                {/* Lo que vas a lograr (3 bullets concretos orientados a resultado) */}
+                <div className="pt-4 mt-4 border-t border-zinc-900 space-y-3">
+                  <span className="block text-[10px] font-mono text-emerald-400 uppercase tracking-widest font-black">LO QUE VAS A LOGRAR:</span>
+                  <div className="space-y-3">
+                    <div className="flex items-start space-x-2 text-xs text-zinc-300 leading-relaxed">
+                      <span className="text-emerald-400 shrink-0 select-none">✔</span>
+                      <span><strong className="text-white">Identidad de Ejecutor:</strong> Define quién eres por lo que haces y no por cómo te sientes, desactivando el boicot mental antes de empezar.</span>
+                    </div>
+                    <div className="flex items-start space-x-2 text-xs text-zinc-300 leading-relaxed">
+                      <span className="text-emerald-400 shrink-0 select-none">✔</span>
+                      <span><strong className="text-white">Soberanía Intelectual:</strong> Toma decisiones lógicas con frialdad científica cuando tu cerebro intente negociar con excusas baratas.</span>
+                    </div>
+                    <div className="flex items-start space-x-2 text-xs text-zinc-300 leading-relaxed">
+                      <span className="text-emerald-400 shrink-0 select-none">✔</span>
+                      <span><strong className="text-white">Responsabilidad Radical:</strong> Adquiere el control absoluto de tus circunstancias eliminando la justificación externa de tus fracasos para siempre.</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 pt-4 border-t border-zinc-900 bg-zinc-900/10 p-4 rounded-xl space-y-2">
-                <span className="block text-[10px] font-mono text-zinc-500 uppercase tracking-widest font-black">Resultado final:</span>
-                <p className="text-brand-orange text-xs font-bold font-display uppercase tracking-wide">
-                  Pensar como una persona que ejecuta.
-                </p>
-                <p className="text-zinc-400 text-xxs leading-normal">
-                  Ya no actuarás según cómo te sientas. Comenzarás a actuar según quién has decidido convertirte.
+              <div className="mt-8 pt-4 border-t border-zinc-900 bg-zinc-900/10 p-4 rounded-xl text-center">
+                <p className="text-zinc-400 text-xs italic leading-normal">
+                  "La mente no se motiva; se gobierna."
                 </p>
               </div>
             </div>
@@ -729,82 +882,34 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
                   </div>
                 </div>
 
-                <h3 className="font-display font-black text-white text-2xl tracking-wide">LIBRO 2: HÁBITOS</h3>
-                <p className="text-zinc-500 text-[9px] font-mono uppercase tracking-widest mt-1 block leading-normal">
-                  El sistema para construir una vida productiva sin depender de la fuerza de voluntad
+                <h3 className="font-display font-black text-white text-xl uppercase tracking-wide">LIBRO 2 — HÁBITOS</h3>
+                <p className="text-brand-orange text-xs font-mono uppercase tracking-wider mt-1 block leading-snug font-bold">
+                  La ingeniería del comportamiento automático para diseñar un día a prueba de fallas.
                 </p>
                 
-                <div className="space-y-4 mt-4 text-xs text-zinc-400 font-sans leading-relaxed">
-                  <p>
-                    Saber qué hacer no cambia tu vida.
-                  </p>
-                  <p>
-                    <strong className="text-white">Lo que cambia tu vida es lo que haces todos los días.</strong>
-                  </p>
-                  <p>
-                    Este libro te enseña cómo transformar acciones aisladas en comportamientos automáticos que trabajen a tu favor.
-                  </p>
-                  <p>
-                    Descubrirás por qué la mayoría de los hábitos fracasan, cómo diseñar sistemas sostenibles, cómo eliminar distracciones y cómo crear rutinas capaces de generar resultados reales a largo plazo.
-                  </p>
-                  <p className="italic text-zinc-500">
-                    Porque el éxito no depende de una gran decisión. Depende de miles de pequeñas decisiones repetidas correctamente.
-                  </p>
-                </div>
-
-                {/* El dolor que ataca */}
-                <div className="pt-4 mt-4 border-t border-zinc-900 space-y-2">
-                  <span className="block text-[10px] font-mono text-rose-400/80 uppercase tracking-widest font-black">El dolor que ataca:</span>
-                  <div className="grid grid-cols-1 gap-1.5 pl-1.5">
-                    {[
-                      "Procrastinación",
-                      "Desorganización",
-                      "Distracciones constantes",
-                      "Mala gestión del tiempo",
-                      "Falta de enfoque",
-                      "Inconsistencia"
-                    ].map((idx) => (
-                      <div key={idx} className="flex items-center space-x-2 text-xxs text-zinc-400">
-                        <span className="text-rose-500 font-mono">•</span>
-                        <span>{idx}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Lo que representa */}
-                <div className="pt-4 mt-4 border-t border-zinc-900 space-y-1">
-                  <span className="block text-[10px] font-mono text-zinc-500 uppercase tracking-widest font-black">Lo que representa:</span>
-                  <p className="text-zinc-300 text-xs font-medium">La construcción de sistemas que funcionan incluso cuando no tienes ganas.</p>
-                </div>
-
-                {/* Lo que aprenderás */}
-                <div className="pt-4 mt-4 border-t border-zinc-900 space-y-2">
-                  <span className="block text-[10px] font-mono text-emerald-400/90 uppercase tracking-widest font-black">Lo que aprenderás:</span>
-                  <div className="space-y-1.5 pl-1">
-                    {[
-                      "Cómo crear hábitos duraderos",
-                      "Cómo eliminar hábitos destructivos",
-                      "Cómo diseñar rutinas efectivas",
-                      "Cómo aumentar tu productividad",
-                      "Cómo construir sistemas de éxito personal"
-                    ].map((item) => (
-                      <div key={item} className="flex items-start space-x-2 text-xs text-zinc-300">
-                        <span className="text-emerald-400 shrink-0 select-none">✔</span>
-                        <span>{item}</span>
-                      </div>
-                    ))}
+                {/* Lo que vas a lograr (3 bullets concretos orientados a resultado) */}
+                <div className="pt-4 mt-4 border-t border-zinc-900 space-y-3">
+                  <span className="block text-[10px] font-mono text-emerald-400 uppercase tracking-widest font-black">LO QUE VAS A LOGRAR:</span>
+                  <div className="space-y-3">
+                    <div className="flex items-start space-x-2 text-xs text-zinc-300 leading-relaxed">
+                      <span className="text-emerald-400 shrink-0 select-none">✔</span>
+                      <span><strong className="text-white">Arquitectura de Entorno:</strong> Estructura un entorno físico y digital que haga imposible procrastinar, convirtiendo el trabajo enfocado en el camino de menor esfuerzo.</span>
+                    </div>
+                    <div className="flex items-start space-x-2 text-xs text-zinc-300 leading-relaxed">
+                      <span className="text-emerald-400 shrink-0 select-none">✔</span>
+                      <span><strong className="text-white">Anclaje Automático:</strong> Transforma micro-acciones difíciles en hábitos automáticos e inconscientes que no consuman tu energía mental de reserva.</span>
+                    </div>
+                    <div className="flex items-start space-x-2 text-xs text-zinc-300 leading-relaxed">
+                      <span className="text-emerald-400 shrink-0 select-none">✔</span>
+                      <span><strong className="text-white">Cierre de Fugas Dopamínicas:</strong> Desmantela el circuito de recompensa que te ancla al scroll infinito y la gratificación instantánea.</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 pt-4 border-t border-zinc-900 bg-zinc-900/10 p-4 rounded-xl space-y-2">
-                <span className="block text-[10px] font-mono text-zinc-500 uppercase tracking-widest font-black">Resultado final:</span>
-                <p className="text-brand-orange text-xs font-bold font-display uppercase tracking-wide">
-                  Automatizar comportamientos ganadores.
-                </p>
-                <p className="text-zinc-400 text-xxs leading-normal">
-                  Dejarás de depender de la motivación para actuar y comenzarás a avanzar mediante sistemas diseñados para el progreso constante.
+              <div className="mt-8 pt-4 border-t border-zinc-900 bg-zinc-900/10 p-4 rounded-xl text-center">
+                <p className="text-zinc-400 text-xs italic leading-normal">
+                  "No te elevas al nivel de tus metas; caes al nivel de tus sistemas."
                 </p>
               </div>
             </div>
@@ -833,89 +938,35 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
                   </div>
                 </div>
 
-                <h3 className="font-display font-black text-white text-2xl tracking-wide">LIBRO 3: DISCIPLINA</h3>
-                <p className="text-zinc-500 text-[9px] font-mono uppercase tracking-widest mt-1 block leading-normal">
-                  El sistema para actuar incluso cuando no tienes motivación.
+                <h3 className="font-display font-black text-white text-xl uppercase tracking-wide">LIBRO 3 — DISCIPLINA</h3>
+                <p className="text-brand-orange text-xs font-mono uppercase tracking-wider mt-1 block leading-snug font-bold">
+                  La ciencia de la consistencia incondicional para ejecutar sin importar tu estado de ánimo.
                 </p>
                 
-                <div className="space-y-4 mt-4 text-xs text-zinc-400 font-sans leading-relaxed">
-                  <p>
-                    La disciplina es el factor que separa a quienes sueñan de quienes construyen.
-                  </p>
-                  <p>
-                    La mayoría de las personas tiene objetivos.
-                  </p>
-                  <p>
-                    <strong className="text-white">Pocas tienen la capacidad de mantenerse firmes cuando aparece el cansancio, la incomodidad o la dificultad.</strong>
-                  </p>
-                  <p>
-                    Este libro te enseñará cómo desarrollar autocontrol, vencer la procrastinación, fortalecer tu carácter y convertirte en una persona que cumple su palabra independientemente de las circunstancias.
-                  </p>
-                  <p className="italic text-zinc-500">
-                    Aquí aprenderás que la disciplina no es un talento. Es una identidad.
-                  </p>
-                </div>
-
-                {/* El dolor que ataca */}
-                <div className="pt-4 mt-4 border-t border-zinc-900 space-y-2">
-                  <span className="block text-[10px] font-mono text-rose-400/80 uppercase tracking-widest font-black">El dolor que ataca:</span>
-                  <div className="grid grid-cols-1 gap-1.5 pl-1.5">
-                    {[
-                      "Abandono constante de objetivos",
-                      "Pereza",
-                      "Falta de consistencia",
-                      "Falta de autocontrol",
-                      "Excusas permanentes",
-                      "Incapacidad para sostener hábitos"
-                    ].map((idx) => (
-                      <div key={idx} className="flex items-center space-x-2 text-xxs text-zinc-400">
-                        <span className="text-rose-500 font-mono">•</span>
-                        <span>{idx}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Lo que representa */}
-                <div className="pt-4 mt-4 border-t border-zinc-900 space-y-1">
-                  <span className="block text-[10px] font-mono text-zinc-500 uppercase tracking-widest font-black">Lo que representa:</span>
-                  <p className="text-zinc-300 text-xs font-medium">La transformación definitiva de intención en ejecución.</p>
-                </div>
-
-                {/* Lo que aprenderás */}
-                <div className="pt-4 mt-4 border-t border-zinc-900 space-y-2">
-                  <span className="block text-[10px] font-mono text-emerald-400/90 uppercase tracking-widest font-black">Lo que aprenderás:</span>
-                  <div className="space-y-1.5 pl-1">
-                    {[
-                      "Cómo desarrollar disciplina real",
-                      "Cómo eliminar excusas",
-                      "Cómo vencer la procrastinación",
-                      "Cómo fortalecer el autocontrol",
-                      "Cómo mantener la consistencia a largo plazo",
-                      "Cómo convertir la ejecución en tu estándar personal"
-                    ].map((item) => (
-                      <div key={item} className="flex items-start space-x-2 text-xs text-zinc-300">
-                        <span className="text-emerald-400 shrink-0 select-none">✔</span>
-                        <span>{item}</span>
-                      </div>
-                    ))}
+                {/* Lo que vas a lograr (3 bullets concretos orientados a resultado) */}
+                <div className="pt-4 mt-4 border-t border-zinc-900 space-y-3">
+                  <span className="block text-[10px] font-mono text-emerald-400 uppercase tracking-widest font-black">LO QUE VAS A LOGRAR:</span>
+                  <div className="space-y-3">
+                    <div className="flex items-start space-x-2 text-xs text-zinc-300 leading-relaxed">
+                      <span className="text-emerald-400 shrink-0 select-none">✔</span>
+                      <span><strong className="text-white">Blindaje Emocional:</strong> Cumple tus compromisos diarios incluso si te sientes cansado, deprimido o bajo una intensa tormenta emocional.</span>
+                    </div>
+                    <div className="flex items-start space-x-2 text-xs text-zinc-300 leading-relaxed">
+                      <span className="text-emerald-400 shrink-0 select-none">✔</span>
+                      <span><strong className="text-white">Autocontrol Extremo:</strong> Fortalece el músculo de resistencia mental necesario para tolerar la incomodidad física y la tentación del abandono.</span>
+                    </div>
+                    <div className="flex items-start space-x-2 text-xs text-zinc-300 leading-relaxed">
+                      <span className="text-emerald-400 shrink-0 select-none">✔</span>
+                      <span><strong className="text-white">Cumplimiento de Palabra:</strong> Recupera el respeto absoluto por tus propias promesas de una vez por todas.</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 pt-4 border-t border-zinc-900 bg-zinc-900/10 p-4 rounded-xl space-y-2">
-                <span className="block text-[10px] font-mono text-zinc-500 uppercase tracking-widest font-black">Resultado final:</span>
-                <p className="text-brand-orange text-xs font-bold font-display uppercase tracking-wide">
-                  Convertirte en alguien que hace lo que dice que hará.
+              <div className="mt-8 pt-4 border-t border-zinc-900 bg-zinc-900/10 p-4 rounded-xl text-center">
+                <p className="text-zinc-400 text-xs italic leading-normal">
+                  "La disciplina es el puente inquebrantable entre la intención y el imperio."
                 </p>
-                <div className="text-zinc-400 text-xxs leading-normal space-y-1">
-                  <p>• No dependerás de la motivación.</p>
-                  <p>• No dependerás de las emociones.</p>
-                  <p>• No dependerás de las circunstancias.</p>
-                  <p className="font-medium text-zinc-300 pt-1">
-                    Te convertirás en una persona capaz de ejecutar de forma consistente durante años.
-                  </p>
-                </div>
               </div>
             </div>
 
@@ -962,23 +1013,23 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
                   />
                   {/* Glassy overlay showing details */}
                   <div className="absolute inset-x-0 bottom-0 bg-black/80 backdrop-blur-sm border-t border-zinc-900 p-2.5 flex justify-between items-center">
-                    <span className="text-[9px] font-mono text-zinc-400 font-bold uppercase tracking-wider">MAPA MENTAL INTERACTIVO</span>
-                    <span className="text-[9px] bg-emerald-500/15 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 font-mono font-black uppercase">DESCARGABLE</span>
+                    <span className="text-[9px] font-mono text-zinc-400 font-bold uppercase tracking-wider">MAPA INTEGRAL DE EJECUCIÓN</span>
+                    <span className="text-[9px] bg-emerald-500/15 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 font-mono font-black uppercase">DIAGRAMA HD</span>
                   </div>
                 </div>
 
                 <div className="space-y-1">
-                  <span className="text-emerald-500/80 font-mono text-[10px] font-bold block uppercase tracking-widest">• RECURSO 01 •</span>
-                  <h4 className="font-display text-white font-extrabold text-lg uppercase tracking-wide group-hover:text-emerald-400 transition-colors">Mapa Mental Focus Mindset</h4>
+                  <span className="text-emerald-500/80 font-mono text-[10px] font-bold block uppercase tracking-widest">• RECURSO ACCIÓN 01 •</span>
+                  <h4 className="font-display text-white font-extrabold text-lg uppercase tracking-wide group-hover:text-emerald-400 transition-colors">Mapa Mental de Activación Inmediata</h4>
                 </div>
 
                 <p className="text-zinc-400 text-xs leading-relaxed font-sans min-h-[60px]">
-                  La estructura lógica e interconectada en una sola página. Ten una guía clara de desactivación mental lista en cualquier contratiempo o distracción cotidiana.
+                  El mapa visual completo de la trilogía estructurado para desactivar las excusas mentales en menos de 60 segundos ante cualquier síntoma de procrastinación o bloqueo del entorno.
                 </p>
               </div>
 
               <div className="pt-4 border-t border-zinc-900/80 flex justify-between items-center text-xs font-mono">
-                <span className="text-zinc-500 line-through">Valor: $9.00 USD</span>
+                <span className="text-zinc-500 line-through">Valor: $19.00 USD</span>
                 <span className="text-emerald-400 font-black tracking-wider bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/15">INCLUIDO GRATIS</span>
               </div>
             </div>
@@ -1000,23 +1051,23 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
                   />
                   {/* Glassy overlay showing details */}
                   <div className="absolute inset-x-0 bottom-0 bg-black/80 backdrop-blur-sm border-t border-zinc-900 p-2.5 flex justify-between items-center">
-                    <span className="text-[9px] font-mono text-zinc-400 font-bold uppercase tracking-wider">VERSION AUDIO MP3 HQ</span>
+                    <span className="text-[9px] font-mono text-zinc-400 font-bold uppercase tracking-wider">VERSION AUDIO HQ MP3</span>
                     <span className="text-[9px] bg-emerald-500/15 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 font-mono font-black uppercase">AUDIOBOOK</span>
                   </div>
                 </div>
 
                 <div className="space-y-1">
-                  <span className="text-emerald-500/80 font-mono text-[10px] font-bold block uppercase tracking-widest">• RECURSO 02 •</span>
-                  <h4 className="font-display text-white font-extrabold text-lg uppercase tracking-wide group-hover:text-emerald-400 transition-colors">Audio Resumen Completo</h4>
+                  <span className="text-emerald-500/80 font-mono text-[10px] font-bold block uppercase tracking-widest">• RECURSO ACCIÓN 02 •</span>
+                  <h4 className="font-display text-white font-extrabold text-lg uppercase tracking-wide group-hover:text-emerald-400 transition-colors">Audiolibro: El Manifiesto del Ejecutor</h4>
                 </div>
 
                 <p className="text-zinc-400 text-xs leading-relaxed font-sans min-h-[60px]">
-                  Escucha los principios fundamentales del soberano interno y la desactivación física del cansancio mientras entrenas o caminas en piloto automático.
+                  La versión en audio de alta fidelidad para reprogramar tu autopercepción y absorber los principios lógicos del sistema incondicional mientras entrenas, conduces o caminas.
                 </p>
               </div>
 
               <div className="pt-4 border-t border-zinc-900/80 flex justify-between items-center text-xs font-mono">
-                <span className="text-zinc-500 line-through">Valor: $9.00 USD</span>
+                <span className="text-zinc-500 line-through">Valor: $29.00 USD</span>
                 <span className="text-emerald-400 font-black tracking-wider bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/15">INCLUIDO GRATIS</span>
               </div>
             </div>
@@ -1038,23 +1089,23 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
                   />
                   {/* Glassy overlay showing details */}
                   <div className="absolute inset-x-0 bottom-0 bg-black/80 backdrop-blur-sm border-t border-zinc-900 p-2.5 flex justify-between items-center">
-                    <span className="text-[9px] font-mono text-zinc-400 font-bold uppercase tracking-wider">CALENDARIO ESTRATÉGICO 30D</span>
-                    <span className="text-[9px] bg-emerald-500/15 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 font-mono font-black uppercase">WORKBOOK</span>
+                    <span className="text-[9px] font-mono text-zinc-400 font-bold uppercase tracking-wider">PROTOCOLOS DE SEGUIMIENTO 30D</span>
+                    <span className="text-[9px] bg-emerald-500/15 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 font-mono font-black uppercase">POCKET WORKBOOK</span>
                   </div>
                 </div>
 
                 <div className="space-y-1">
-                  <span className="text-emerald-500/80 font-mono text-[10px] font-bold block uppercase tracking-widest">• RECURSO 03 •</span>
-                  <h4 className="font-display text-white font-extrabold text-lg uppercase tracking-wide group-hover:text-emerald-400 transition-colors">Guía de Implementación 30 Días</h4>
+                  <span className="text-emerald-500/80 font-mono text-[10px] font-bold block uppercase tracking-widest">• RECURSO ACCIÓN 03 •</span>
+                  <h4 className="font-display text-white font-extrabold text-lg uppercase tracking-wide group-hover:text-emerald-400 transition-colors">Protocolo de Implementación Rápida (30 Días)</h4>
                 </div>
 
                 <p className="text-zinc-400 text-xs leading-relaxed font-sans min-h-[60px]">
-                  El manual estratégico de micro-acciones que te guiará paso a paso para aplicar un pilar táctico diario sin fatigar tu autodisciplina.
+                  El manual táctico diario con el plan exacto para instalar un pilar de hábitos y disciplina al día sin desgastar tu fuerza de voluntad ni negociar contigo mismo.
                 </p>
               </div>
 
               <div className="pt-4 border-t border-zinc-900/80 flex justify-between items-center text-xs font-mono">
-                <span className="text-zinc-500 line-through">Valor: $9.00 USD</span>
+                <span className="text-zinc-500 line-through">Valor: $37.00 USD</span>
                 <span className="text-emerald-400 font-black tracking-wider bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/15">INCLUIDO GRATIS</span>
               </div>
             </div>
@@ -1541,26 +1592,109 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
             </AnimatePresence>
           </div>
 
+          {/* Comunidad y Calificación visual debajo de los testimonios */}
+          <div className="pt-12 border-t border-zinc-900/60 text-center space-y-4 max-w-2xl mx-auto">
+            <p className="text-zinc-400 text-sm leading-relaxed font-sans">
+              Únete a <strong className="text-white">más de 1,240 personas</strong> que ya han reconfigurado sus patrones mentales, destruido la procrastinación y tomado el control absoluto de sus vidas con esta trilogía.
+            </p>
+            <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-3 bg-zinc-950/80 border border-zinc-900 px-6 py-3 rounded-2xl shadow-xl">
+              <div className="flex text-brand-orange space-x-1">
+                <Star className="h-4 w-4 fill-current text-brand-orange" />
+                <Star className="h-4 w-4 fill-current text-brand-orange" />
+                <Star className="h-4 w-4 fill-current text-brand-orange" />
+                <Star className="h-4 w-4 fill-current text-brand-orange" />
+                <Star className="h-4 w-4 fill-current text-brand-orange" />
+              </div>
+              <span className="text-xs font-mono text-zinc-400">
+                <strong className="text-white">★★★★★ 4.9/5</strong> basado en más de <strong className="text-white">384 reseñas de alumnos reales</strong>
+              </span>
+            </div>
+          </div>
+
         </div>
       </section>
 
       {/* ==========================================================
-          SECCIÓN 9: STACK DE VALOR
+          SECCIÓN 9: LA DECISIÓN DE IDENTIDAD (CIERRE EMOCIONAL)
+          Objetivo: Ofrecer el cierre masivo, contundente y enfocado en quién quiere ser el lector
+          ========================================================== */}
+      <section className="py-24 px-6 bg-black text-center relative overflow-hidden border-b border-zinc-950">
+        
+        {/* Subtle orange/gray radial glows at footer */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_rgba(249,115,22,0.06))] pointer-events-none" />
+
+        <div className="max-w-3xl mx-auto space-y-12 relative z-10">
+          
+          <div className="flex justify-center">
+            {/* Centered logo icon of white-eagle */}
+            <div className="h-20 w-20 rounded-2xl border border-zinc-850 bg-zinc-950 p-1 flex items-center justify-center shadow-lg">
+              <img
+                src="https://i.imgur.com/0Md3eqi.jpg"
+                alt="Focus Mindset Logo Final"
+                className="h-full w-full object-cover rounded-xl"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </div>
+
+          <span className="text-zinc-600 font-mono text-xs font-bold uppercase tracking-widest">LA DECISIÓN FINAL</span>
+          
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight uppercase font-display max-w-4xl mx-auto">
+            ¿VAS A SEGUIR NEGOCIANDO CONTIGO MISMO O VAS A CONVERTIRTE EN EL HOMBRE QUE CUMPLE SU PALABRA?
+          </h2>
+
+          <div className="max-w-2xl mx-auto">
+            <p className="text-zinc-400 text-sm sm:text-base leading-relaxed font-sans">
+              Hay un momento donde tienes que dejar de buscar trucos de productividad y mirarte al espejo. La persona que quieres ser no procrastina, no inventa excusas brillantes cuando está cansada y no depende de si amaneció con ánimos para ponerse a trabajar. Ese hombre simplemente ejecuta porque es lo que hace. El Sistema Focus Mindset no es un curso que vas a memorizar; es la decisión activa de enterrar tu antigua versión indisciplinada hoy mismo.
+            </p>
+          </div>
+
+          <div className="pt-4 flex flex-col items-center space-y-6">
+            <button
+              onClick={handleScrollToCheckoutAction}
+              className="w-full sm:w-auto bg-brand-orange hover:bg-orange-600 text-black px-12 py-5 rounded-xl font-display font-black tracking-widest text-sm uppercase transition-all shadow-[0_10px_30px_rgba(249,115,22,0.3)] hover:shadow-[0_12px_40px_rgba(249,115,22,0.5)] cursor-pointer"
+            >
+              ASUMO EL COMPROMISO: EMPEZAR AHORA
+            </button>
+
+            <span className="text-xxs sm:text-xs text-zinc-500 font-mono uppercase tracking-wider">
+              Acceso instantáneo para siempre por $9.99 USD • Protegido por nuestra garantía incondicional de 30 días
+            </span>
+
+            {/* Absolute security details */}
+            <div className="flex flex-wrap items-center justify-center gap-6 text-[11px] font-mono text-zinc-500 uppercase tracking-wider bg-zinc-950/80 border border-zinc-900/40 p-3 px-6 rounded-xl">
+              <span className="flex items-center gap-1.5 font-bold text-zinc-400">
+                <Shield className="h-4 w-4 text-emerald-500" /> Pago Seguro
+              </span>
+              <span className="flex items-center gap-1.5 font-bold text-zinc-400">
+                <CheckCircle className="h-4 w-4 text-brand-orange" /> Acceso Inmediato
+              </span>
+              <span className="flex items-center gap-1.5 font-bold text-zinc-400">
+                <Award className="h-4 w-4 text-brand-orange" /> Garantía Hotmart
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ==========================================================
+          SECCIÓN 10: STACK DE VALOR Y PRECIO
           Objetivo: Estructura impecable de valor percibido vs descuento irresistible
           ========================================================== */}
-      <section className="py-24 px-6 md:px-12 bg-zinc-995 bg-black border-b border-zinc-950">
+      <section className="py-24 px-6 md:px-12 bg-black border-b border-zinc-950">
         <div className="max-w-3xl mx-auto rounded-3xl border border-zinc-800 bg-zinc-950 p-8 sm:p-12 shadow-[0_30px_100px_rgba(0,0,0,0.9)] space-y-10 relative overflow-hidden">
           
           {/* Top light glow representer */}
           <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-orange/50 to-transparent" />
           
           <div className="text-center space-y-2">
-            <span className="text-brand-orange font-mono text-xxs font-bold uppercase tracking-wider">RESUMEN INTEGRAL DE LA PROPUESTA</span>
-            <h2 className="font-display text-white text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight uppercase">
-              TODO EL SISTEMA DE VALOR PERCIBIDO
+            <span className="text-brand-orange font-mono text-xs font-bold uppercase tracking-wider">EL PRECIO DE LA INDECISIÓN ES MUCHO MAYOR</span>
+            <h2 className="font-display text-white text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight uppercase leading-tight">
+              CONSTRUYE UN SISTEMA DE EJECUCIÓN INQUEBRANTABLE
             </h2>
-            <p className="text-zinc-500 text-xs font-mono">
-              La oferta más completa de transformación conductual libre de riesgos.
+            <p className="text-zinc-500 text-sm font-sans max-w-xl mx-auto">
+              Suma todo el valor de las herramientas de alto rendimiento que vas a recibir hoy por una fracción de su costo real de desarrollo.
             </p>
           </div>
 
@@ -1568,57 +1702,68 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
           <div className="space-y-4 font-mono text-xs sm:text-sm text-zinc-400">
             
             <div className="flex justify-between items-center border-b border-zinc-900 pb-3">
-              <span className="text-white">✓ Libro 1: Mentalidad</span>
-              <span className="text-zinc-500">$19.00 USD</span>
-            </div>
-
-            <div className="flex justify-between items-center border-b border-zinc-900 pb-3">
-              <span className="text-white">✓ Libro 2: Hábitos</span>
-              <span className="text-zinc-500">$19.00 USD</span>
-            </div>
-
-            <div className="flex justify-between items-center border-b border-zinc-900 pb-3">
-              <span className="text-white">✓ Libro 3: Disciplina</span>
-              <span className="text-zinc-500">$19.00 USD</span>
-            </div>
-
-            <div className="flex justify-between items-center border-b border-zinc-900 pb-3">
-              <span className="text-emerald-400 font-bold flex items-center gap-0.5">
-                Bono 1: Mapa Mental Focus Mindset
+              <span className="text-white flex items-center gap-2">
+                <span className="text-brand-orange">✔</span> Libro I: Mentalidad — El Despertar del Soberano Interno
               </span>
-              <span className="text-emerald-400 font-black text-xs font-mono uppercase tracking-wider bg-emerald-950/40 border border-emerald-500/10 px-1.5 py-0.5 rounded">GRATIS</span>
+              <span className="text-zinc-500 font-bold">$27.00 USD</span>
             </div>
 
             <div className="flex justify-between items-center border-b border-zinc-900 pb-3">
-              <span className="text-emerald-400 font-bold flex items-center gap-0.5">
-                Bono 2: Audio Resumen Completo
+              <span className="text-white flex items-center gap-2">
+                <span className="text-brand-orange">✔</span> Libro II: Hábitos — Ingeniería del Comportamiento Automático
               </span>
-              <span className="text-emerald-400 font-black text-xs font-mono uppercase tracking-wider bg-emerald-950/40 border border-emerald-500/10 px-1.5 py-0.5 rounded">GRATIS</span>
+              <span className="text-zinc-500 font-bold">$27.00 USD</span>
             </div>
 
             <div className="flex justify-between items-center border-b border-zinc-900 pb-3">
-              <span className="text-emerald-400 font-bold flex items-center gap-0.5">
-                Bono 3: Guía de Implementación 30 Días
+              <span className="text-white flex items-center gap-2">
+                <span className="text-brand-orange">✔</span> Libro III: Disciplina — Consistencia Incondicional sin Excusas
               </span>
-              <span className="text-emerald-400 font-black text-xs font-mono uppercase tracking-wider bg-emerald-950/40 border border-emerald-500/10 px-1.5 py-0.5 rounded">GRATIS</span>
+              <span className="text-zinc-500 font-bold">$27.00 USD</span>
+            </div>
+
+            <div className="flex justify-between items-center border-b border-zinc-900 pb-3">
+              <span className="text-emerald-400 flex items-center gap-2">
+                <span className="text-emerald-500">✚</span> Bono 1: Mapa Mental de Activación Inmediata (HD)
+              </span>
+              <span className="text-zinc-500 font-bold">$19.00 USD</span>
+            </div>
+
+            <div className="flex justify-between items-center border-b border-zinc-900 pb-3">
+              <span className="text-emerald-400 flex items-center gap-2">
+                <span className="text-emerald-500">✚</span> Bono 2: Audiolibro Completo — El Manifiesto del Ejecutor
+              </span>
+              <span className="text-zinc-500 font-bold">$29.00 USD</span>
+            </div>
+
+            <div className="flex justify-between items-center border-b border-zinc-900 pb-3">
+              <span className="text-emerald-400 flex items-center gap-2">
+                <span className="text-emerald-500">✚</span> Bono 3: Protocolo de Implementación Rápida (30 Días)
+              </span>
+              <span className="text-zinc-500 font-bold">$17.00 USD</span>
             </div>
 
           </div>
 
           {/* Pricing final section */}
-          <div className="pt-6 border-t border-zinc-800 text-center space-y-4">
-            <span className="text-zinc-500 text-xs block uppercase font-mono tracking-widest">
-              VALOR TOTAL CALCULADO: <strong className="line-through text-zinc-650">$84.00 USD</strong>
+          <div className="pt-6 border-t border-zinc-850 text-center space-y-6">
+            <span className="text-zinc-500 text-sm block uppercase font-mono tracking-widest">
+              Valor total: <span className="line-through text-zinc-400 font-bold">$146.00 USD</span> — Hoy lo conseguís por:
             </span>
-            <span className="text-zinc-400 text-xs font-mono uppercase tracking-widest">PRECIO REDUCIDO HOY:</span>
             
             <div className="flex flex-col items-center">
-              <span className="text-5xl sm:text-6xl font-black font-display text-brand-orange tracking-tight antialiased">
+              <span className="text-6xl sm:text-7xl font-black font-display text-brand-orange tracking-tight antialiased drop-shadow-[0_4px_24px_rgba(249,115,22,0.15)]">
                 $9.99 USD
               </span>
               
+              <div className="max-w-lg mx-auto pt-3 pb-5">
+                <p className="text-zinc-400 text-xs sm:text-sm font-sans leading-relaxed">
+                  No reducimos este precio para liquidar el sistema, sino para remover cualquier barrera económica. Si $9.99 USD te parecen costosos para reprogramar tu disciplina para siempre, tu principal problema no es el dinero.
+                </p>
+              </div>
+              
               {/* Premium checkout button directly below the reduced price */}
-              <div id="checkout-to-scroll" className="w-full max-w-md pt-5 pb-3 flex flex-col items-center">
+              <div id="checkout-to-scroll" className="w-full max-w-md pb-4 flex flex-col items-center">
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
@@ -1640,20 +1785,27 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
                 </div>
               </div>
 
-              {/* Hotmart Satisfaction Guarantee */}
-              <div className="mt-3 mb-4 flex flex-col items-center gap-2">
+              {/* 30-Day Guarantee Copy */}
+              <div className="pt-6 border-t border-zinc-900 w-full max-w-xl space-y-3">
+                <p className="text-xs text-emerald-400 font-mono font-bold uppercase tracking-widest">
+                  🛡️ GARANTÍA INCONDICIONAL DE 30 DÍAS
+                </p>
+              </div>
+
+              {/* Hotmart Satisfaction Guarantee badge */}
+              <div className="mt-6 flex flex-col items-center gap-2">
                 <img
                   src="https://i.imgur.com/l7BL98b.png"
                   alt="Garantía Hotmart"
                   className="w-24 h-auto object-contain select-none"
                   referrerPolicy="no-referrer"
                 />
-                <p className="text-[10px] text-zinc-400 font-mono uppercase tracking-wider max-w-sm">
+                <p className="text-[10px] text-zinc-500 font-mono uppercase tracking-wider max-w-sm">
                   Venta procesada y garantizada por <span className="text-brand-orange font-bold">Hotmart</span>
                 </p>
               </div>
 
-              <span className="text-[10px] text-zinc-500 font-mono uppercase tracking-widest mt-1">
+              <span className="text-[10px] text-zinc-500 font-mono uppercase tracking-widest mt-4">
                 Un solo pago seguro • Acceso ilimitado permanente sin mensualidades
               </span>
             </div>
@@ -1663,70 +1815,19 @@ export default function LandingPage({ onTriggerCheckout }: LandingPageProps) {
       </section>
 
       {/* ==========================================================
-          SECCIÓN 10: CTA FINAL
-          Objetivo: Ofrecer el cierre masivo, contundente y con los logos correctos
+          FOOTER LEGAL Y DE CONTROL DE MARCA
           ========================================================== */}
-      <section className="py-24 px-6 bg-black text-center relative overflow-hidden">
-        
-        {/* Subtle orange/gray radial glows at footer */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_rgba(249,115,22,0.06))] pointer-events-none" />
-
-        <div className="max-w-3xl mx-auto space-y-12 relative z-10">
-          
-          <div className="flex justify-center">
-            {/* Centered logo icon of white-eagle */}
-            <div className="h-20 w-20 rounded-2xl border border-zinc-850 bg-zinc-950 p-1 flex items-center justify-center shadow-lg">
-              <img
-                src="https://i.imgur.com/0Md3eqi.jpg"
-                alt="Focus Mindset Logo Final"
-                className="h-full w-full object-cover rounded-xl"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-          </div>
-
-          <span className="text-zinc-600 font-mono text-xs font-bold uppercase tracking-widest">CIERRE DEL CURSO</span>
-          
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight uppercase font-display max-w-2xl mx-auto">
-            NO NECESITAS MÁS MOTIVACIÓN.
-          </h2>
-
-          <p className="font-display text-brand-orange font-bold text-lg sm:text-2xl tracking-tight max-w-2xl mx-auto uppercase leading-snug">
-            NECESITAS CONVERTIRTE EN LA PERSONA QUE ACTÚA INCLUSO CUANDO NO TIENE GANAS.
-          </p>
-
-          <div className="pt-4 flex flex-col items-center space-y-6">
-            <button
-              onClick={handleScrollToCheckoutAction}
-              className="w-full sm:w-auto bg-brand-orange hover:bg-orange-600 text-black px-12 py-5 rounded-xl font-display font-black tracking-widest text-sm uppercase transition-all shadow-[0_10px_30px_rgba(249,115,22,0.3)] hover:shadow-[0_12px_40px_rgba(249,115,22,0.5)] cursor-pointer"
-            >
-              OBTENER ACCESO INMEDIATO
-            </button>
-
-            {/* Absolute security details */}
-            <div className="flex flex-wrap items-center justify-center gap-6 text-[11px] font-mono text-zinc-500 uppercase tracking-wider bg-zinc-950/80 border border-zinc-900/40 p-3 px-6 rounded-xl">
-              <span className="flex items-center gap-1.5 font-bold text-zinc-400">
-                <Shield className="h-4 w-4 text-emerald-500" /> Pago Seguro
-              </span>
-              <span className="flex items-center gap-1.5 font-bold text-zinc-400">
-                <CheckCircle className="h-4 w-4 text-brand-orange" /> Acceso Inmediato
-              </span>
-              <span className="flex items-center gap-1.5 font-bold text-zinc-400">
-                <Award className="h-4 w-4 text-brand-orange" /> Garantía Hotmart
-              </span>
-            </div>
-          </div>
-
-        </div>
-
-        {/* Dynamic Legal and disclaimer footer */}
-        <div className="relative z-10 pt-16 mt-20 border-t border-zinc-900/60 max-w-4xl mx-auto text-[10px] font-mono text-zinc-600 space-y-4">
+      <footer className="py-20 px-6 bg-black text-center relative overflow-hidden z-10 border-t border-zinc-950">
+        <div className="relative z-10 max-w-4xl mx-auto text-[10px] font-mono text-zinc-600 space-y-4">
           <p>© 2026 FOCUS MINDSET. TODOS LOS DERECHOS RESERVADOS. EL ORDEN ES PODER ABSOLUTO.</p>
+          <p className="text-zinc-500 font-medium tracking-wide uppercase text-[11px] select-none pt-2">
+            "La mente no se motiva; se gobierna. El orden es poder."
+          </p>
           <p className="max-w-2xl mx-auto opacity-50 select-none">
             Descargo de responsabilidad: Las marcas Hotmart es de su respectivo dueño. Ninguno de estos infoproductos interactivos constituye asesoramiento médico. La simulación interactiva forma parte del entorno de validación pedagógica segura de Google AI Studio.
           </p>
         </div>
-      </section>
+      </footer>
 
       {/* Real-time Purchase notification toast (dynamic floating component) */}
       <AnimatePresence>
